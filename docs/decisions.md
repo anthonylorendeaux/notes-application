@@ -47,6 +47,10 @@ On garde le `packageManager: pnpm@12.11.2` du Starter plutôt que de le rabaisse
 `experimental.sqliteConnector: 'native'` (`node:sqlite`) plutôt que `better-sqlite3`, pour éviter une dépendance native à compiler.
 *À revoir si* Vercel ou Nuxt Content cassent ce mode expérimental.
 
+**D13 — Titre des notes sans frontmatter** (2026-10-12)
+On prend le H1 de tête (retiré du corps), sinon le nom de fichier tel quel, sans description automatique, via un hook `content:file:afterParse`.
+*À revoir si* Nuxt Content change le format du corps (minimark) ou l'ordre des hooks.
+
 ## Pistes écartées
 - **Docus** : dépendance à une couche, fonctions IA et endpoints publics à neutraliser.
 - **Template Docs de Nuxt UI** (écarté le 2026-10-12) : embarque `nuxt-llms` (llms.txt et llms-full.txt pré-rendus avec tout le contenu), un serveur MCP sur `/mcp` et une mise en page de documentation, à retirer ou à protéger.
