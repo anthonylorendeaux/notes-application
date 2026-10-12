@@ -55,6 +55,10 @@ On prend le H1 de tête (retiré du corps), sinon le nom de fichier tel quel, sa
 Pas de nouvelle route : la recherche passe par le même endpoint `query` que le reste du contenu, protégé en M4. Bouton « Modifier » présent mais désactivé jusqu'à Studio (M6).
 *À revoir si* le nombre de notes rend le chargement des sections trop lourd sur mobile.
 
+**D15 — Studio (M6) avant l'authentification (M4)** (2026-10-12)
+Les notes de test ne sont pas sensibles : on avance l'édition. Le site de production reste public jusqu'à M4, donc toute modification via Studio ne porte que sur des notes de test. Studio configuré avec le repo explicite (branche `main`), en français, IA désactivée (aucune clé fournie).
+*À revoir* dès qu'une vraie note doit entrer dans le repo : M4 passe alors avant.
+
 ## Pistes écartées
 - **Docus** : dépendance à une couche, fonctions IA et endpoints publics à neutraliser.
 - **Template Docs de Nuxt UI** (écarté le 2026-10-12) : embarque `nuxt-llms` (llms.txt et llms-full.txt pré-rendus avec tout le contenu), un serveur MCP sur `/mcp` et une mise en page de documentation, à retirer ou à protéger.
