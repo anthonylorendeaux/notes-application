@@ -39,6 +39,10 @@ Projet Claude (claude.ai) pour réfléchir et relire les plans ; Claude Code pou
 **D10 — IA et RAG après la v1** (2026-10-08)
 D'abord un assistant simple, puis un RAG maison (embeddings au build, JSON puis pgvector). Envoyer des notes à un fournisseur d'IA reste un choix explicite.
 
+**D11 — pnpm 12 imposé par le template** (2026-10-12)
+On garde le `packageManager: pnpm@12.11.2` du Starter plutôt que de le rabaisser, pour suivre le template et que Vercel utilise la même version.
+*À revoir si* Vercel ne supporte pas cette version.
+
 ## Pistes écartées
 - **Docus** : dépendance à une couche, fonctions IA et endpoints publics à neutraliser.
 - **Template Docs de Nuxt UI** (écarté le 2026-10-12) : embarque `nuxt-llms` (llms.txt et llms-full.txt pré-rendus avec tout le contenu), un serveur MCP sur `/mcp` et une mise en page de documentation, à retirer ou à protéger.
