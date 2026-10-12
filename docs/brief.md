@@ -51,4 +51,5 @@ Principe directeur : **rester simple et facile à maintenir**. Pas d'usine à ga
 - Nuxt Content accepte-t-il des notes sans frontmatter, et quel titre leur donne-t-il ? (M2)
 - Quelles pages sont pré-générées au build, et comment les protéger sur Vercel ? (M4)
 - Quelles routes Nuxt Content et Studio ajoutent-ils (API, téléchargement de la base de contenu, `/_studio`), et comment les protéger sans casser Studio ? (M4)
+- Nuxt Content pré-rend `/__nuxt_content/<collection>/sql_dump.txt` (toute la base, servie en statique par Vercel sans passer par le middleware) et expose `POST /__nuxt_content/<collection>/query`. Le module force `prerender: true` sur le dump (option `private` interne, non utilisable) : désactiver ce pré-rendu via un hook et protéger `/__nuxt_content/**` côté serveur (401 sans session valide). Vérifier en fenêtre privée en production. (M4)
 - L'éditeur de Studio est-il confortable sur mobile ? Reformate-t-il le Markdown ? (M6)
