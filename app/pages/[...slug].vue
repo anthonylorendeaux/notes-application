@@ -10,6 +10,10 @@ if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Note introuvable', fatal: true })
 }
 
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
+  queryCollectionItemSurroundings('notes', route.path, { fields: ['description'] })
+)
+
 useSeoMeta({
   title: page.value.title,
   description: page.value.description
@@ -31,11 +35,33 @@ useSeoMeta({
       <UPageHeader
         :title="page.title"
         :description="page.description"
-      />
+      >
+        <template #links>
+          <!-- Wired to Studio in M6 -->
+          <UButton
+            label="Modifier"
+            icon="i-lucide-pencil"
+            color="neutral"
+            variant="outline"
+            disabled
+          />
+        </template>
+      </UPageHeader>
 
       <UPageBody>
         <ContentRenderer :value="page" />
+
+        <USeparator v-if="surround?.length" />
+
+        <UContentSurround :surround="surround" />
       </UPageBody>
+
+      <template
+        v-if="page.body?.toc?.links?.length"
+        #right
+      >
+        <UContentToc :links="page.body.toc.links" />
+      </template>
     </UPage>
   </UContainer>
 </template>
