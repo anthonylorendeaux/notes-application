@@ -65,6 +65,10 @@ Les notes de test ne sont pas sensibles : on avance l'édition. Le site de produ
 L'édition est déjà réservée par Studio (`STUDIO_GITHUB_MODERATORS` + droit d'écriture sur le repo). La lecture est publique sur le domaine de production : pages, `sql_dump.txt` et endpoint `query` de Nuxt Content. Les previews restent protégées par Vercel. Aucune note privée ou sensible dans le repo.
 *À revoir si* une note privée doit entrer dans le repo, ou avant la bêta ou l'assistant IA.
 
+**D17 — Liens entre notes en Markdown standard** (2026-10-12)
+Liens absolus vers le chemin de la page (`[Nom](/dossier/nom)`), sans syntaxe Obsidian ni composant. Renommer ou déplacer une note casse les liens vers elle.
+*À revoir si* les renommages de notes cassent trop souvent les liens.
+
 ## Pistes écartées
 - **Docus** : dépendance à une couche, fonctions IA et endpoints publics à neutraliser.
 - **Template Docs de Nuxt UI** (écarté le 2026-10-12) : embarque `nuxt-llms` (llms.txt et llms-full.txt pré-rendus avec tout le contenu), un serveur MCP sur `/mcp` et une mise en page de documentation, à retirer ou à protéger.
