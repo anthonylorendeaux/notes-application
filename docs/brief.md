@@ -48,7 +48,7 @@ Principe directeur : **rester simple et facile à maintenir**. Pas d'usine à ga
 - Aucune vraie note dans le repo avant la validation de M4 en production : uniquement des notes de test jusque-là.
 
 ## Points à vérifier tôt
-- Nuxt Content accepte-t-il des notes sans frontmatter, et quel titre leur donne-t-il ? (M2)
+- Nuxt Content accepte-t-il des notes sans frontmatter, et quel titre leur donne-t-il ? (M2) → Oui. Par défaut, il prend le H1 de tête (laissé en double dans le corps) ou le nom de fichier en pascalCase (« Liste De Courses »). Corrigé par un hook dans `nuxt.config.ts` : on garde le H1 de tête (retiré du corps), sinon le nom de fichier tel quel.
 - Quelles pages sont pré-générées au build, et comment les protéger sur Vercel ? (M4)
 - Quelles routes Nuxt Content et Studio ajoutent-ils (API, téléchargement de la base de contenu, `/_studio`), et comment les protéger sans casser Studio ? (M4)
 - Nuxt Content pré-rend `/__nuxt_content/<collection>/sql_dump.txt` (toute la base, servie en statique par Vercel sans passer par le middleware) et expose `POST /__nuxt_content/<collection>/query`. Le module force `prerender: true` sur le dump (option `private` interne, non utilisable) : désactiver ce pré-rendu via un hook et protéger `/__nuxt_content/**` côté serveur (401 sans session valide). Vérifier en fenêtre privée en production. (M4)
