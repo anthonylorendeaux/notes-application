@@ -6,11 +6,9 @@ Notes dans le dossier de contenu, éditées via Studio (commit sur GitHub). Dép
 - pnpm dev / pnpm build / pnpm lint / pnpm typecheck
 
 ## Règles critiques
-- IMPORTANT : aucune page ni route ne doit être lisible sans session valide,
-  y compris les pages pré-générées, les routes internes de Nuxt Content et celles de Studio.
+- IMPORTANT : le site est public en lecture (D16) : aucune note privée ou sensible dans le dossier de contenu.
 - IMPORTANT : aucun secret dans le code, les logs ou les réponses.
-- IMPORTANT : uniquement des notes de test dans le dossier de contenu tant que M4 n'est pas validé en production.
-- Accès limité aux IDs GitHub de ALLOWED_GITHUB_IDS, vérifié côté serveur.
+- Édition limitée par STUDIO_GITHUB_MODERATORS (Studio) et le droit d'écriture sur le repo.
 - Pas de nouvelle dépendance sans accord.
 - Rester simple : pas d'abstraction ni de configuration non demandée.
 - Interface en français, code en anglais.

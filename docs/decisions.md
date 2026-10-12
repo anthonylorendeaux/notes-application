@@ -17,10 +17,12 @@ Un seul repo, le plus simple pour Nuxt Content et Studio.
 
 **D4 — Accès limité par OAuth GitHub + liste d'IDs numériques** (2026-10-08)
 `nuxt-auth-utils`, variable `ALLOWED_GITHUB_IDS`, vérification côté serveur sur toutes les routes. IDs numériques plutôt que pseudos (un pseudo peut changer).
+*Suspendue par D16 (2026-10-12).*
 
 **D5 — Aucun contenu lisible sans session** (2026-10-08)
 Inclut les pages pré-générées (servies par Vercel sans passer par le middleware) et les endpoints qui exposent le contenu. Le pré-rendu est désactivé ou le contenu protégé autrement.
 Ajout du 2026-10-12 : aucune vraie note dans le repo tant que M4 n'est pas validé en production. Jusque-là, uniquement des notes de test, et un contrôle en fenêtre privée à chaque jalon. Raison : le premier merge sur `main` publie le site sur le domaine de production, que la protection Vercel ne couvre pas.
+*Suspendue par D16 (2026-10-12).*
 
 **D6 — Hébergement Vercel Hobby** (2026-10-08)
 Suffisant pour un usage personnel non commercial.
@@ -57,7 +59,11 @@ Pas de nouvelle route : la recherche passe par le même endpoint `query` que le 
 
 **D15 — Studio (M6) avant l'authentification (M4)** (2026-10-12)
 Les notes de test ne sont pas sensibles : on avance l'édition. Le site de production reste public jusqu'à M4, donc toute modification via Studio ne porte que sur des notes de test. Studio configuré avec le repo explicite (branche `main`), en français, IA désactivée (aucune clé fournie).
-*À revoir* dès qu'une vraie note doit entrer dans le repo : M4 passe alors avant.
+*À revoir* dès qu'une vraie note doit entrer dans le repo : M4 passe alors avant. Voir D16.
+
+**D16 — M4 reporté : notes publiques en lecture** (2026-10-12)
+L'édition est déjà réservée par Studio (`STUDIO_GITHUB_MODERATORS` + droit d'écriture sur le repo). La lecture est publique sur le domaine de production : pages, `sql_dump.txt` et endpoint `query` de Nuxt Content. Les previews restent protégées par Vercel. Aucune note privée ou sensible dans le repo.
+*À revoir si* une note privée doit entrer dans le repo, ou avant la bêta ou l'assistant IA.
 
 ## Pistes écartées
 - **Docus** : dépendance à une couche, fonctions IA et endpoints publics à neutraliser.
