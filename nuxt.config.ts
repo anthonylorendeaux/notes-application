@@ -3,7 +3,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/ui',
-    '@nuxt/content'
+    '@nuxt/content',
+    'nuxt-studio'
   ],
 
   devtools: {
@@ -47,6 +48,19 @@ export default defineNuxtConfig({
         commaDangle: 'never',
         braceStyle: '1tbs'
       }
+    }
+  },
+
+  // AI stays disabled: no AI_GATEWAY_API_KEY nor studio.ai.apiKey.
+  studio: {
+    repository: {
+      provider: 'github',
+      owner: 'anthonylorendeaux',
+      repo: 'notes-application',
+      branch: 'main'
+    },
+    i18n: {
+      defaultLocale: 'fr'
     }
   }
 })

@@ -37,13 +37,13 @@ useSeoMeta({
         :description="page.description"
       >
         <template #links>
-          <!-- Wired to Studio in M6 -->
           <UButton
             label="Modifier"
             icon="i-lucide-pencil"
             color="neutral"
             variant="outline"
-            disabled
+            :to="`/_studio?redirect=${encodeURIComponent(route.path)}`"
+            external
           />
         </template>
       </UPageHeader>

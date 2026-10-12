@@ -16,6 +16,7 @@
     "@nuxt/content": "^3.16.1",
     "@nuxt/ui": "^4.11.3",
     "nuxt": "^4.6.0",
+    "nuxt-studio": "^1.7.0",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
