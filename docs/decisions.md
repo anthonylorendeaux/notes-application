@@ -49,9 +49,9 @@ On garde le `packageManager: pnpm@12.11.2` du Starter plutôt que de le rabaisse
 `experimental.sqliteConnector: 'native'` (`node:sqlite`) plutôt que `better-sqlite3`, pour éviter une dépendance native à compiler.
 *À revoir si* Vercel ou Nuxt Content cassent ce mode expérimental.
 
-**D13 — Titre des notes sans frontmatter** (2026-10-12)
-On prend le H1 de tête (retiré du corps), sinon le nom de fichier tel quel, sans description automatique, via un hook `content:file:afterParse`.
-*À revoir si* Nuxt Content change le format du corps (minimark) ou l'ordre des hooks.
+**D13 — Titres standard de Nuxt Content, sans hook** (2026-10-14, remplace la version du 2026-10-12)
+Plus de hook `content:file:afterParse` : rien n'est muté au parse. Le titre vient du frontmatter, sinon du nom de fichier en pascalCase (« Ted talk » → « Ted Talk ») ; le H1 de tête reste dans le corps ; pas de description automatique.
+*À revoir si* un besoin réel de titre « nom de fichier tel quel » apparaît.
 
 **D14 — Recherche via `UContentSearch`, sections chargées côté client uniquement** (2026-10-12)
 Pas de nouvelle route : la recherche passe par le même endpoint `query` que le reste du contenu, protégé en M4. Bouton « Modifier » présent mais désactivé jusqu'à Studio (M6).
