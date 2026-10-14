@@ -13,16 +13,6 @@ useHead({
   }
 })
 
-const title = 'Mes notes'
-const description = 'Mes notes personnelles en Markdown.'
-
-useSeoMeta({
-  titleTemplate: `%s · ${title}`,
-  description,
-  ogTitle: title,
-  ogDescription: description
-})
-
 const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('notes'))
 
 // Search sections are loaded client-side only, never in the rendered HTML.

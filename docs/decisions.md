@@ -69,6 +69,10 @@ L'édition est déjà réservée par Studio (`STUDIO_GITHUB_MODERATORS` + droit 
 Liens absolus vers le chemin de la page (`[Nom](/dossier/nom)`), sans syntaxe Obsidian ni composant. Renommer ou déplacer une note casse les liens vers elle.
 *À revoir si* les renommages de notes cassent trop souvent les liens.
 
+**D18 — Métadonnées SEO minimales** (2026-10-14)
+Plus de `useSeoMeta` global dans `app.vue` (titleTemplate, description, Open Graph) : chaque page porte son titre et sa description depuis son propre contenu.
+*À revoir si* le référencement du site devient un objectif.
+
 ## Pistes écartées
 - **Docus** : dépendance à une couche, fonctions IA et endpoints publics à neutraliser.
 - **Template Docs de Nuxt UI** (écarté le 2026-10-12) : embarque `nuxt-llms` (llms.txt et llms-full.txt pré-rendus avec tout le contenu), un serveur MCP sur `/mcp` et une mise en page de documentation, à retirer ou à protéger.
