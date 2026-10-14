@@ -73,6 +73,10 @@ Liens absolus vers le chemin de la page (`[Nom](/dossier/nom)`), sans syntaxe Ob
 Plus de `useSeoMeta` global dans `app.vue` (titleTemplate, description, Open Graph) : chaque page porte son titre et sa description depuis son propre contenu.
 *À revoir si* le référencement du site devient un objectif.
 
+**D19 — Barre latérale et précédent/suivant scopés au dossier courant** (2026-10-14)
+L'aside et le drawer du header n'affichent que la catégorie courante (arborescence complète sur l'accueil) ; la recherche reste globale. Le précédent/suivant est limité au dossier immédiat (même profondeur), par requête sur le préfixe de `path` (slugifié) ordonnée par `stem`, à la place de `queryCollectionItemSurroundings` qui ne filtre pas.
+*À revoir si* parcourir une catégorie entière (sous-dossiers inclus) se révèle plus utile.
+
 ## Pistes écartées
 - **Docus** : dépendance à une couche, fonctions IA et endpoints publics à neutraliser.
 - **Template Docs de Nuxt UI** (écarté le 2026-10-12) : embarque `nuxt-llms` (llms.txt et llms-full.txt pré-rendus avec tout le contenu), un serveur MCP sur `/mcp` et une mise en page de documentation, à retirer ou à protéger.
