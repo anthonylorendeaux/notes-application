@@ -6,8 +6,19 @@ const navigation = inject<Ref<ContentNavigationItem[] | undefined>>('navigation'
 
 const { data: page } = await useAsyncData(route.path, () => queryCollection('notes').path(route.path).first())
 
-if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Note introuvable', fatal: true })
+// No note at this path: fall back to a folder index built from the navigation tree, else 404.
+function findFolderNode(nodes: ContentNavigationItem[], path: string): ContentNavigationItem | undefined {
+  for (const node of nodes) {
+    if (node.path === path) return node
+    const child = node.children && findFolderNode(node.children, path)
+    if (child) return child
+  }
+}
+
+const folder = computed(() => page.value ? undefined : findFolderNode(navigation?.value ?? [], route.path))
+
+if (!page.value && !folder.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Page introuvable', fatal: true })
 }
 
 // Previous/next note within the same folder only (queryCollectionItemSurroundings
@@ -36,9 +47,14 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, async ()
 })
 
 useSeoMeta({
-  title: page.value.title,
-  description: page.value.description
+  title: (page.value ?? folder.value)?.title,
+  description: page.value?.description
 })
+
+const folderLinks = computed(() => folder.value?.children?.map(child => ({
+  label: child.title,
+  to: child.path
+})) ?? [])
 </script>
 
 <template>
@@ -83,6 +99,23 @@ useSeoMeta({
       >
         <UContentToc :links="page.body.toc.links" />
       </template>
+    </UPage>
+
+    <UPage v-else-if="folder">
+      <template #left>
+        <UPageAside>
+          <UContentNavigation
+            :navigation="navigation"
+            highlight
+          />
+        </UPageAside>
+      </template>
+
+      <UPageHeader :title="folder.title" />
+
+      <UPageBody>
+        <UPageLinks :links="folderLinks" />
+      </UPageBody>
     </UPage>
   </UContainer>
 </template>

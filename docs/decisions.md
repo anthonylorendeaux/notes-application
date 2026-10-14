@@ -77,6 +77,10 @@ Plus de `useSeoMeta` global dans `app.vue` (titleTemplate, description, Open Gra
 L'aside et le drawer du header n'affichent que la catégorie courante (arborescence complète sur l'accueil) ; la recherche reste globale. Le précédent/suivant est limité au dossier immédiat (même profondeur), par requête sur le préfixe de `path` (slugifié) ordonnée par `stem`, à la place de `queryCollectionItemSurroundings` qui ne filtre pas.
 *À revoir si* parcourir une catégorie entière (sous-dossiers inclus) se révèle plus utile.
 
+**D20 — Index auto-généré par dossier** (2026-10-14)
+Priorité : note réelle > index auto-généré > 404. Chaque racine de dossier (`/frontend`, `/backend/java`, …) affiche une page listant ses notes directes et ses sous-dossiers, construite depuis l'arborescence de navigation — aucun fichier de contenu ajouté. Les pages MOC rédigées restent des notes ordinaires dans leur dossier.
+*À revoir si* les index doivent devenir éditables dans Studio.
+
 ## Pistes écartées
 - **Docus** : dépendance à une couche, fonctions IA et endpoints publics à neutraliser.
 - **Template Docs de Nuxt UI** (écarté le 2026-10-12) : embarque `nuxt-llms` (llms.txt et llms-full.txt pré-rendus avec tout le contenu), un serveur MCP sur `/mcp` et une mise en page de documentation, à retirer ou à protéger.
