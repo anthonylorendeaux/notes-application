@@ -12,7 +12,7 @@ const { data: recentNotes } = await useAsyncData('home-notes', async () => {
 
   return toNoteCards(rows)
     .sort((a, b) => noteTimestamp(b.created) - noteTimestamp(a.created))
-    .slice(0, 9)
+    .slice(0, 3)
 })
 
 const folders = computed(() => toFolderCards(navigation?.value))
@@ -26,15 +26,6 @@ useSeoMeta({
 <template>
   <UContainer>
     <UPage>
-      <template #left>
-        <UPageAside>
-          <UContentNavigation
-            :navigation="navigation"
-            highlight
-          />
-        </UPageAside>
-      </template>
-
       <UPageHeader
         title="Mes notes"
         description="Mes notes personnelles en Markdown."
