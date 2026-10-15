@@ -1,10 +1,9 @@
 ---
+title: Thread - Java
 created: 2026-01-01T23:28:00
 category: Backend
 tags: [Fiche]
 ---
-
-# Thread - Java
 
 Cette note est un index vers les sujets spécifiques de threading en Java.
 

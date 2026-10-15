@@ -1,10 +1,9 @@
 ---
+title: Jest
 created: 2026-01-01T23:28:00
 category: Test
 tags: [Fiche]
 ---
-
-# Jest
 
 ## Introduction à Jest
 

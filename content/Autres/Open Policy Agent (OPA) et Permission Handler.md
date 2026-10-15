@@ -5,8 +5,6 @@ tags: Fiche
 created: 2026-01-01T23:28:00.000Z
 ---
 
-# Open Policy Agent (OPA) et Permission Handler
-
 ## Fonctionnement général
 
 OPA est une solution de gestion des politiques centralisée qui sépare la logique d'autorisation du code de l'application. Cela garantit une gestion des permissions cohérente et centralisée.

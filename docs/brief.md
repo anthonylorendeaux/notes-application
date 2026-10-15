@@ -47,7 +47,7 @@ Principe directeur : **rester simple et facile à maintenir**. Pas d'usine à ga
 - Envoyer des notes à un fournisseur d'IA est un choix explicite, jamais un effet de bord.
 
 ## Points à vérifier tôt
-- Nuxt Content accepte-t-il des notes sans frontmatter, et quel titre leur donne-t-il ? (M2) → Oui. Par défaut, il prend le H1 de tête (laissé en double dans le corps) ou le nom de fichier en pascalCase (« Liste De Courses »). Corrigé par un hook dans `nuxt.config.ts` : on garde le H1 de tête (retiré du corps), sinon le nom de fichier tel quel.
+- Nuxt Content accepte-t-il des notes sans frontmatter, et quel titre leur donne-t-il ? (M2) → Oui. Par défaut : titre du frontmatter, sinon nom de fichier en pascalCase (« Ted talk » → « Ted Talk »), le H1 de tête restant dans le corps. Le hook de `nuxt.config.ts` a été retiré le 2026-10-14 : comportement standard conservé (D13 révisée). Contenu normalisé le 2026-10-15 : chaque note porte `title` dans son frontmatter, H1 de tête retiré quand il dupliquait le titre.
 - Quelles pages sont pré-générées au build, et comment les protéger sur Vercel ? (M4)
 - Quelles routes Nuxt Content et Studio ajoutent-ils (API, téléchargement de la base de contenu, `/_studio`), et comment les protéger sans casser Studio ? (M4)
 - Nuxt Content pré-rend `/__nuxt_content/<collection>/sql_dump.txt` (toute la base, servie en statique par Vercel sans passer par le middleware) et expose `POST /__nuxt_content/<collection>/query`. Le module force `prerender: true` sur le dump (option `private` interne, non utilisable) : désactiver ce pré-rendu via un hook et protéger `/__nuxt_content/**` côté serveur (401 sans session valide). Vérifier en fenêtre privée en production. (M4)

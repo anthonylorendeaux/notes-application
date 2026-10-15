@@ -1,10 +1,9 @@
 ---
+title: Sérialisation
 created: 2026-01-01T23:28:00
 category: Backend
 tags: [Fiche]
 ---
-
-# Sérialisation
 
 La sérialisation est le processus de conversion d'un objet Java en un format binaire (flux d'octets) qui peut être stocké ou transmis. Ce processus permet de conserver l'état d'un objet et de le reconstituer ultérieurement. La désérialisation est l'opération inverse qui consiste à convertir un flux d'octets en un objet Java.
 

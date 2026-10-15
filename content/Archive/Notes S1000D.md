@@ -5,10 +5,6 @@ tags: []
 created: 2026-01-01
 ---
 
-# Notes S1000D
-
-# Notes S1000D
-
 Requirements
 
 - Media Library : cgm, xls xslx, pdf, wrl

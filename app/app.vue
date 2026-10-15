@@ -13,22 +13,22 @@ useHead({
   }
 })
 
-const title = 'Mes notes'
-const description = 'Mes notes personnelles en Markdown.'
-
-useSeoMeta({
-  titleTemplate: `%s · ${title}`,
-  description,
-  ogTitle: title,
-  ogDescription: description
-})
+const route = useRoute()
 
 const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('notes'))
+
+// Sidebar scoped to the current category; full tree on the home page.
+const sectionNavigation = computed(() => {
+  const [category] = route.path.replace(/\/+$/, '').split('/').filter(Boolean)
+  return category
+    ? navigation.value?.filter(item => item.path === `/${category}`)
+    : navigation.value
+})
 
 // Search sections are loaded client-side only, never in the rendered HTML.
 const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('notes'), { server: false })
 
-provide('navigation', navigation)
+provide('navigation', sectionNavigation)
 </script>
 
 <template>
@@ -45,7 +45,7 @@ provide('navigation', navigation)
 
       <template #body>
         <UContentNavigation
-          :navigation="navigation"
+          :navigation="sectionNavigation"
           highlight
         />
       </template>
