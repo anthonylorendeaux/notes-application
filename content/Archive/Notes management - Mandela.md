@@ -5,8 +5,6 @@ tags: []
 created: 2026-01-01
 ---
 
-# Notes management - Mandela
-
 # Pépites
 
 |  | Lundi | Mardi |

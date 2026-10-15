@@ -4,7 +4,10 @@ import type { ContentNavigationItem } from '@nuxt/content'
 const route = useRoute()
 const navigation = inject<Ref<ContentNavigationItem[] | undefined>>('navigation')
 
-const { data: page } = await useAsyncData(route.path, () => queryCollection('notes').path(route.path).first())
+// Trailing slashes would break every path lookup below.
+const path = route.path.replace(/\/+$/, '') || '/'
+
+const { data: page } = await useAsyncData(path, () => queryCollection('notes').path(path).first())
 
 // No note at this path: fall back to a folder index built from the navigation tree, else 404.
 function findFolderNode(nodes: ContentNavigationItem[], path: string): ContentNavigationItem | undefined {
@@ -15,44 +18,71 @@ function findFolderNode(nodes: ContentNavigationItem[], path: string): ContentNa
   }
 }
 
-const folder = computed(() => page.value ? undefined : findFolderNode(navigation?.value ?? [], route.path))
+const folder = computed(() => {
+  if (page.value) return undefined
+  // The root has no folder node in the navigation tree: build its index
+  // from the top-level navigation (auto-generated home page).
+  if (path === '/') {
+    return { title: 'Accueil', path: '/', children: navigation?.value }
+  }
+  return findFolderNode(navigation?.value ?? [], path)
+})
 
 if (!page.value && !folder.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page introuvable', fatal: true })
 }
 
-// Previous/next note within the same folder only (queryCollectionItemSurroundings
+// Previous/next note within the immediate folder only (queryCollectionItemSurroundings
 // cannot filter by folder: it flattens the whole collection).
-const { data: surround } = await useAsyncData(`${route.path}-surround`, async () => {
-  const dir = route.path.replace(/\/[^/]+$/, '')
-  if (!dir) {
-    return [null, null] as unknown as ContentNavigationItem[]
+const { data: surround } = await useAsyncData(`${path}-surround`, async (): Promise<[ContentNavigationItem | null, ContentNavigationItem | null]> => {
+  // Folder index pages have no previous/next note.
+  if (folder.value) {
+    return [null, null]
   }
 
+  const dir = path.replace(/\/[^/]+$/, '')
+
+  // LIKE is only a prefilter ('_' and '%' are wildcards in slugs):
+  // the real folder check happens on exact path segments below.
   const notes = await queryCollection('notes')
-    .where('path', 'LIKE', `${dir}/%`)
+    .where('path', 'LIKE', dir ? `${dir}/%` : '/%')
     .order('stem', 'ASC')
     .select('path', 'title', 'description')
     .all()
 
-  // Immediate folder only: same depth, subfolders excluded.
-  const depth = route.path.split('/').filter(Boolean).length
-  const siblings = notes.filter(note => note.path.split('/').filter(Boolean).length === depth)
-  const index = siblings.findIndex(note => note.path === route.path)
+  // Immediate folder only, subfolders excluded; '' matches root-level notes.
+  const prefix = dir ? `${dir}/` : '/'
+  const siblings = notes.filter((note) => {
+    const rest = note.path.slice(prefix.length)
+    return rest !== '' && !rest.includes('/')
+  })
+  const index = siblings.findIndex(note => note.path === path)
   if (index === -1) {
-    return [null, null] as unknown as ContentNavigationItem[]
+    return [null, null]
   }
 
-  return [siblings[index - 1] ?? null, siblings[index + 1] ?? null] as unknown as ContentNavigationItem[]
+  return [siblings[index - 1] ?? null, siblings[index + 1] ?? null]
+})
+
+// UContentSurround hides a missing side, but its prop type does not admit
+// nulls: queryCollectionItemSurroundings makes the same compromise.
+const surroundLinks = computed(() => surround.value as unknown as ContentNavigationItem[])
+
+const description = computed(() => {
+  if (page.value?.description) return page.value.description
+  if (path === '/') return 'Mes notes personnelles en Markdown.'
+  if (folder.value) return `Notes et sous-dossiers du dossier « ${folder.value.title} ».`
+  return undefined
 })
 
 useSeoMeta({
   title: (page.value ?? folder.value)?.title,
-  description: page.value?.description
+  description: description.value
 })
 
 const folderLinks = computed(() => folder.value?.children?.map(child => ({
   label: child.title,
+  icon: child.page === false ? 'i-lucide-folder' : 'i-lucide-file-text',
   to: child.path
 })) ?? [])
 </script>
@@ -79,7 +109,7 @@ const folderLinks = computed(() => folder.value?.children?.map(child => ({
             icon="i-lucide-pencil"
             color="neutral"
             variant="outline"
-            :to="`/_studio?redirect=${encodeURIComponent(route.path)}`"
+            :to="`/_studio?redirect=${encodeURIComponent(path)}`"
             external
           />
         </template>
@@ -90,7 +120,7 @@ const folderLinks = computed(() => folder.value?.children?.map(child => ({
 
         <USeparator v-if="surround?.some(Boolean)" />
 
-        <UContentSurround :surround="surround" />
+        <UContentSurround :surround="surroundLinks" />
       </UPageBody>
 
       <template

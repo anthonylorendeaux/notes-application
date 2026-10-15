@@ -5,8 +5,6 @@ tags: Fiche
 created: 2026-03-24T20:14:00.000Z
 ---
 
-# Claude Code
-
 **Claude Code** est un outil CLI (Command Line Interface) d'Anthropic qui permet d'utiliser l'IA Claude directement dans le terminal pour automatiser des tâches de développement. Il agit comme un agent de codage autonome capable de lire, modifier, créer des fichiers, exécuter des commandes et interagir avec ton projet.
 
 ---

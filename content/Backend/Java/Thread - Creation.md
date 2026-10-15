@@ -1,10 +1,9 @@
 ---
+title: Thread - Java - Création
 created: 2026-01-01T23:28:00
 category: Backend
 tags: [Fiche]
 ---
-
-# Thread - Java - Création
 
 ## Création de Threads en Java
 

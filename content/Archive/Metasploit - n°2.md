@@ -5,8 +5,6 @@ tags: cyber
 created: 2026-01-01T23:23:00.000Z
 ---
 
-# Metasploit - n°2
-
 # Scan
 
 ## NVT: vsftpd Compromised Source Packages Backdoor Vulnerability

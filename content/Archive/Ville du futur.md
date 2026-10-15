@@ -5,8 +5,6 @@ tags: []
 created: 2026-01-01
 ---
 
-# Ville du futur
-
 # **Comment utiliser les jumeaux numériques pour améliorer la résilience des villes face aux catastrophes naturelles ?**
 
 1. Modélisation et simulation des catastrophes naturelles : Les jumeaux numériques peuvent être utilisés pour créer des modèles et des simulations de différentes catastrophes naturelles, telles que les ouragans, les tremblements de terre, les inondations, etc. Ces modèles peuvent aider les autorités locales à comprendre comment ces catastrophes pourraient affecter leur ville, à évaluer les risques et à planifier des mesures préventives.

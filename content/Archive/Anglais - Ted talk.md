@@ -1,9 +1,8 @@
 ---
+title: Anglais - Ted talk
 created: 2026-01-01T23:23:00
 category: Archive
 ---
-
-# Anglais - Ted talk
 
 I choose the subject: "The Ethics of UX (User Experience): Why UX is a problem?". Because it's a topic closely related to my PFE, which is the development of a web application.
 

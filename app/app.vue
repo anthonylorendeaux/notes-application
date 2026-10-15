@@ -19,7 +19,7 @@ const { data: navigation } = await useAsyncData('navigation', () => queryCollect
 
 // Sidebar scoped to the current category; full tree on the home page.
 const sectionNavigation = computed(() => {
-  const [category] = route.path.split('/').filter(Boolean)
+  const [category] = route.path.replace(/\/+$/, '').split('/').filter(Boolean)
   return category
     ? navigation.value?.filter(item => item.path === `/${category}`)
     : navigation.value

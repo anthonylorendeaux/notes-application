@@ -1,11 +1,9 @@
 ---
-title: Optimiser les applications Nuxt pour les Core Web
+title: Optimiser les applications Nuxt pour les Core Web Vitals
 category: Frontend
 tags: [fiche]
 created: 2025-09-11
 ---
-
-# Optimiser les applications Nuxt pour les Core Web Vitals
 
 Tags: Fiche
 Created Date: September 11, 2025

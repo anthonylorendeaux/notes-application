@@ -5,8 +5,6 @@ tags: [fiche]
 created: 2026-01-01
 ---
 
-# Robot Framework
-
 Framework d'automatisation de tests open source base sur Python.
 
 ## Installation

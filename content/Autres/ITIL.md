@@ -1,10 +1,9 @@
 ---
+title: ITIL
 created: 2026-01-01T23:28:00
 category: Autres
 tags: [Fiche]
 ---
-
-# ITIL
 
 ITIL (Information Technology Infrastructure Library) est un cadre de référence pour la gestion des services informatiques (ITSM - IT Service Management). Il fournit des lignes directrices et des meilleures pratiques pour aider les organisations à gérer et à améliorer la qualité des services informatiques qu'elles offrent.
 

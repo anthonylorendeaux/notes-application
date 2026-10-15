@@ -1,10 +1,9 @@
 ---
+title: Thread - Java - Task Management
 created: 2026-01-01T23:28:00
 category: Backend
 tags: [Fiche]
 ---
-
-# Thread - Java - Task Management
 
 ## Gestion des Tâches
 

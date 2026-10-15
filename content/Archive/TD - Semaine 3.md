@@ -5,8 +5,6 @@ tags: cyber
 created: 2026-01-01T23:24:00.000Z
 ---
 
-# TD - Semaine 3
-
 ## Analyse de la mémoire RAM
 
 ### Récupération du profil de l'image

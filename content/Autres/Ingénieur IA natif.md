@@ -1,3 +1,7 @@
+---
+title: Ingénieur IA natif
+---
+
 ### Contexte
 L'IA génère désormais la majorité du nouveau code, mais cela entraîne une surcharge de code et des problèmes de qualité. La différence entre les équipes qui réussissent et celles qui sombrent réside dans le passage de l'écriture de code à l'**orchestration** des agents IA.
 
