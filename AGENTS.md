@@ -17,6 +17,7 @@ Notes dans le dossier de contenu, éditées via Studio (commit sur GitHub). Dép
 
 ## Workflow
 - Mode plan d'abord, une étape par branche et par PR.
+- IMPORTANT : `git pull` avant tout commit et avant tout push, pour ne pas casser l'historique git.
 - Lint + typecheck avant de conclure.
 - En fin d'étape, proposer une ligne pour docs/decisions.md si un choix a été fait.
 

@@ -29,14 +29,14 @@ Suffisant pour un usage personnel non commercial.
 Ajout du 2026-10-12 : projet Vercel créé dès M0, avec Vercel Authentication en Standard Protection. Cela protège les previews et les URL de déploiement générées, mais pas le domaine de production : ce dernier n'est protégé que par M4.
 *À revoir si* usage commercial ou ouverture large.
 
-**D7 — Outillage Claude Code minimal** (2026-10-08)
-CLAUDE.md court, `.claude/settings.json` (modèle + permissions), serveurs MCP officiels Nuxt et Nuxt UI dans `.mcp.json`. Pas de skills, plugins ni agents pour l'instant : un outil s'ajoute seulement quand un problème réel le justifie.
+**D7 — Outillage agent minimal** (2026-10-08, renommé le 2026-10-15)
+Fichier d'instructions agent court (`AGENTS.md`), permissions shell minimales, serveurs MCP officiels Nuxt et Nuxt UI dans `.mcp.json`. Pas de skills, plugins ni agents pour l'instant : un outil s'ajoute seulement quand un problème réel le justifie.
 
 **D8 — Workflow** (2026-10-08)
 Une issue GitHub par jalon, mode plan d'abord, une branche et une PR par jalon, vérification sur la prévisualisation Vercel (mobile compris), `/clear` entre deux jalons. Relecture sécurité de M4 dans une session séparée.
 
 **D9 — Pilotage** (2026-10-08)
-Projet Claude (claude.ai) pour réfléchir et relire les plans ; Claude Code pour exécuter. Le repo fait foi : les docs du projet Claude sont des copies à recharger quand elles changent.
+Un chat IA pour réfléchir et relire les plans ; un agent IA en CLI pour exécuter. Le repo fait foi : les docs de pilotage externes sont des copies à recharger quand elles changent.
 
 **D10 — IA et RAG après la v1** (2026-10-08)
 D'abord un assistant simple, puis un RAG maison (embeddings au build, JSON puis pgvector). Envoyer des notes à un fournisseur d'IA reste un choix explicite.

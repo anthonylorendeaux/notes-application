@@ -19,7 +19,7 @@ Principe directeur : **rester simple et facile à maintenir**. Pas d'usine à ga
 ## Périmètre de la v1
 | Jalon | Contenu | Fini quand |
 |---|---|---|
-| M0 | Socle : init du template Starter, repo privé, docs (brief, décisions), CLAUDE.md, `.claude/settings.json`, `.mcp.json`, projet Vercel avec Standard Protection | Une preview Vercel est inaccessible depuis une fenêtre privée |
+| M0 | Socle : init du template Starter, repo privé, docs (brief, décisions), `AGENTS.md`, `.mcp.json`, projet Vercel avec Standard Protection | Une preview Vercel est inaccessible depuis une fenêtre privée |
 | M1 | Ajout de Nuxt Content, mise en page minimale (navigation entre notes, affichage d'une note), identité (titre, description, liens) | Une note de test s'affiche avec la navigation, sur ordinateur et sur téléphone |
 | M2 | Structure des notes, support des notes sans frontmatter | Une note sans frontmatter s'affiche avec un titre correct |
 | M3 | Interface orientée notes, confort mobile, accès à l'édition | Lire une note sur téléphone est agréable |
