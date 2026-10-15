@@ -10,6 +10,7 @@ Notes dans le dossier de contenu, éditées via Studio (commit sur GitHub). Dép
 - IMPORTANT : aucun secret dans le code, les logs ou les réponses.
 - Édition limitée par STUDIO_GITHUB_MODERATORS (Studio) et le droit d'écriture sur le repo.
 - Notes : `title:` obligatoire dans le frontmatter, pas de H1 en tête de note (l'en-tête de page affiche déjà le titre).
+- Notes : `description:` optionnel dans le frontmatter (affiché sur les cartes des index) ; sinon extrait automatique du premier paragraphe.
 - Pas de nouvelle dépendance sans accord.
 - Rester simple : pas d'abstraction ni de configuration non demandée.
 - Interface en français, code en anglais.
