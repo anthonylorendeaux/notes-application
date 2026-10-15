@@ -29,14 +29,7 @@ useSeoMeta({
       <UPageHeader
         title="Mes notes"
         description="Mes notes personnelles en Markdown."
-      >
-        <template #links>
-          <UContentSearchButton
-            :collapsed="false"
-            label="Rechercher une note"
-          />
-        </template>
-      </UPageHeader>
+      />
 
       <UPageBody>
         <section class="mb-12">
