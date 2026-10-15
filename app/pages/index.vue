@@ -26,15 +26,6 @@ useSeoMeta({
 <template>
   <UContainer>
     <UPage>
-      <template #left>
-        <UPageAside>
-          <UContentNavigation
-            :navigation="navigation"
-            highlight
-          />
-        </UPageAside>
-      </template>
-
       <UPageHeader
         title="Mes notes"
         description="Mes notes personnelles en Markdown."
