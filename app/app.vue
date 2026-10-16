@@ -46,15 +46,16 @@ provide('navigation', sectionNavigation)
       :toggle="{ class: 'min-h-11 min-w-11' }"
       :ui="{ title: 'font-sans' }"
     >
+      <UContentSearchButton
+        label="Rechercher"
+        :collapsed="false"
+        class="min-h-11"
+      />
+
       <template #right>
         <UContentSearchButton
           label="Rechercher"
-          :collapsed="false"
-          class="hidden min-h-11 sm:inline-flex"
-        />
-        <UContentSearchButton
-          label="Rechercher"
-          class="min-h-11 min-w-11 sm:hidden"
+          class="min-h-11 min-w-11 lg:hidden"
         />
 
         <UColorModeButton class="min-h-11 min-w-11" />

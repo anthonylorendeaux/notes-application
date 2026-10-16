@@ -4,10 +4,6 @@ import type { NoteRow } from '~/utils/note'
 
 const navigation = inject<Ref<ContentNavigationItem[] | undefined>>('navigation')
 
-// Same shared state as UContentSearchButton: setting `open` shows the
-// search modal defined in app.vue (Meta+K toggles the same ref).
-const { open } = useContentSearch()
-
 // Every note row, fetched once: the latest notes, the total count and the
 // per-folder dates below all derive from it.
 const { data: allNotes } = await useAsyncData('home-notes', async () => {
@@ -62,28 +58,6 @@ useSeoMeta({
       <p class="mt-2 text-sm text-muted">
         {{ formatNoteCount(notes.length) }}
       </p>
-
-      <button
-        type="button"
-        aria-keyshortcuts="meta+k"
-        class="mt-8 flex w-full max-w-[640px] items-center gap-3 rounded-lg border border-line bg-surface px-4 py-3.5 text-left transition-colors hover:border-muted"
-        @click="open = true"
-      >
-        <UIcon
-          name="i-lucide-search"
-          class="size-5 shrink-0 text-muted"
-        />
-        <span class="flex-1 truncate text-muted">
-          Rechercher une note…
-        </span>
-        <span
-          class="hidden items-center gap-1 sm:flex"
-          aria-hidden="true"
-        >
-          <UKbd>⌘</UKbd>
-          <UKbd>K</UKbd>
-        </span>
-      </button>
     </header>
 
     <section

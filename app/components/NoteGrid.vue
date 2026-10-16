@@ -13,7 +13,7 @@ defineProps<{ notes: NoteCardData[] }>()
     >
       <NuxtLink
         :to="note.path"
-        class="flex gap-4 py-4 hover:bg-surface focus-visible:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2"
+        class="-mx-3 flex gap-4 rounded-md px-3 py-4 hover:bg-surface focus-visible:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2"
       >
         <span
           v-if="formatNoteDate(note.created)"
