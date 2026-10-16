@@ -1,5 +1,3 @@
-import type { BlogPostProps } from '@nuxt/ui'
-
 // Raw query rows: the collection has no schema, custom frontmatter
 // fields live in the `meta` JSON column.
 export interface NoteRow {
@@ -84,16 +82,4 @@ export function toNoteCards(rows: NoteRow[]): NoteCardData[] {
     created: row.meta?.created,
     category: row.meta?.category
   }))
-}
-
-export function toBlogPost(note: NoteCardData): BlogPostProps {
-  const timestamp = noteTimestamp(note.created)
-  return {
-    title: note.title,
-    to: note.path,
-    // A Date keeps the instant stable; UBlogPost formats it (medium date, UTC).
-    date: timestamp ? new Date(timestamp) : undefined,
-    badge: note.category ?? undefined,
-    description: note.description
-  }
 }
