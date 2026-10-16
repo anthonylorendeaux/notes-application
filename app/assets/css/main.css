@@ -1,18 +1,258 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+/*
+ * Visual foundation of the "index" identity (P0).
+ *
+ * Type scale (ratio 1.25): 12 · 14 · 16 · 20 · 25 · 31 · 39 · 48.
+ * Fonts declared below are auto-loaded and optimized by @nuxt/fonts,
+ * which Nuxt UI registers automatically: no config needed.
+ */
 @theme static {
-  --font-sans: 'Public Sans', sans-serif;
+  --font-sans: "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --color-green-50: #EFFDF5;
-  --color-green-100: #D9FBE8;
-  --color-green-200: #B3F5D1;
-  --color-green-300: #75EDAE;
-  --color-green-400: #00DC82;
-  --color-green-500: #00C16A;
-  --color-green-600: #00A155;
-  --color-green-700: #007F45;
-  --color-green-800: #016538;
-  --color-green-900: #0A5331;
-  --color-green-950: #052E16;
+  --color-bg: #F7F8FA;
+  --color-surface: #FFFFFF;
+  --color-ink: #111418;
+  --color-muted: #5B6472;
+  --color-line: #E3E7EC;
+  --color-accent: #2B3AE0;
+
+  --color-accent-50: #EEF0FF;
+  --color-accent-100: #E0E4FF;
+  --color-accent-200: #C3C9FF;
+  --color-accent-300: #9BA5FF;
+  --color-accent-400: #7D8CFF;
+  --color-accent-500: #4356E8;
+  --color-accent-600: #2B3AE0;
+  --color-accent-700: #232FC0;
+  --color-accent-800: #1E2899;
+  --color-accent-900: #1B247A;
+  --color-accent-950: #121749;
+}
+
+/* Dark mode follows the Nuxt UI color-mode `.dark` class. */
+.dark {
+  --color-bg: #111418;
+  --color-surface: #191D23;
+  --color-ink: #E9ECF2;
+  --color-muted: #99A2B0;
+  --color-line: #262C35;
+  /* Text and links on dark background (AA). Solid accent surfaces must use
+     a scale step instead (e.g. bg-accent-500 with white text, also AA). */
+  --color-accent: #7D8CFF;
+}
+
+/*
+ * Nuxt UI chrome follows the index tokens. Each variable tracks its token,
+ * so dark mode follows automatically through the overrides above.
+ * --ui-primary is intentionally left to the Nuxt UI colors plugin, which
+ * resolves it to the accent scale (500 in light, 400 in dark).
+ */
+:root,
+.dark {
+  --ui-bg: var(--color-bg);
+  --ui-bg-muted: var(--color-bg);
+  --ui-bg-elevated: var(--color-surface);
+  --ui-bg-accented: var(--color-line);
+  --ui-text: var(--color-ink);
+  --ui-text-highlighted: var(--color-ink);
+  --ui-text-muted: var(--color-muted);
+  --ui-text-toned: var(--color-muted);
+  --ui-text-dimmed: var(--color-muted);
+  --ui-border: var(--color-line);
+  --ui-border-muted: var(--color-line);
+  --ui-border-accented: var(--color-line);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  /*
+   * Accent focus ring on interactive elements. Kept in the base layer so
+   * component-level focus styles from Nuxt UI still take precedence.
+   */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-accent) 25%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Reading prose for note bodies (applied to the ContentRenderer container). */
+.prose-note {
+  max-width: 68ch;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--color-ink);
+  overflow-wrap: break-word;
+}
+
+.prose-note > :first-child {
+  margin-top: 0;
+}
+
+.prose-note > :last-child {
+  margin-bottom: 0;
+}
+
+.prose-note p {
+  margin-bottom: 1.25em;
+}
+
+.prose-note h2,
+.prose-note h3,
+.prose-note h4 {
+  font-family: var(--font-serif);
+  line-height: 1.25;
+  color: var(--color-ink);
+  margin-top: 1.75em;
+  margin-bottom: 0.6em;
+}
+
+.prose-note h2 {
+  font-size: 31px;
+}
+
+.prose-note h3 {
+  font-size: 25px;
+}
+
+.prose-note h4 {
+  font-size: 20px;
+}
+
+.prose-note ul,
+.prose-note ol {
+  margin-bottom: 1.25em;
+  padding-left: 1.5em;
+}
+
+.prose-note ul {
+  list-style-type: disc;
+}
+
+.prose-note ol {
+  list-style-type: decimal;
+}
+
+.prose-note li {
+  margin-bottom: 0.375em;
+}
+
+.prose-note li::marker {
+  color: var(--color-muted);
+}
+
+.prose-note li > ul,
+.prose-note li > ol {
+  margin-top: 0.375em;
+  margin-bottom: 0;
+}
+
+.prose-note blockquote {
+  border-left: 3px solid var(--color-line);
+  color: var(--color-muted);
+  padding-left: 1em;
+  margin: 1.5em 0;
+}
+
+.prose-note blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.prose-note a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.prose-note a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.prose-note :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: color-mix(in srgb, var(--color-muted) 12%, transparent);
+  border-radius: 4px;
+  padding: 0.125em 0.375em;
+}
+
+.prose-note pre {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  background-color: #F1F3F6;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.dark .prose-note pre {
+  background-color: var(--color-surface);
+}
+
+.prose-note pre code {
+  font-family: inherit;
+  font-size: inherit;
+  background-color: transparent;
+  padding: 0;
+}
+
+.prose-note table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  margin: 1.5em 0;
+}
+
+.prose-note thead th {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 2px solid var(--color-line);
+  padding: 0.625em 0.75em;
+}
+
+.prose-note tbody td {
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.625em 0.75em;
+}
+
+.prose-note hr {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+  margin: 2em 0;
+}
+
+.prose-note img {
+  max-width: 100%;
+  border-radius: 8px;
 }
