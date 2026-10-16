@@ -33,25 +33,45 @@ provide('navigation', sectionNavigation)
 
 <template>
   <UApp :locale="fr">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-[60] focus:rounded-md focus:bg-surface focus:px-4 focus:py-3 focus:font-sans focus:text-accent"
+    >
+      Aller au contenu
+    </a>
+
     <UHeader
       title="Mes notes"
       to="/"
+      :toggle="{ class: 'min-h-11 min-w-11' }"
+      :ui="{ title: 'font-sans' }"
     >
       <template #right>
-        <UContentSearchButton />
+        <UContentSearchButton
+          label="Rechercher"
+          :collapsed="false"
+          class="hidden min-h-11 sm:inline-flex"
+        />
+        <UContentSearchButton
+          label="Rechercher"
+          class="min-h-11 min-w-11 sm:hidden"
+        />
 
-        <UColorModeButton />
+        <UColorModeButton class="min-h-11 min-w-11" />
       </template>
 
       <template #body>
         <UContentNavigation
           :navigation="sectionNavigation"
           highlight
+          aria-label="Navigation des notes"
+          class="font-sans"
+          :ui="{ link: 'min-h-11' }"
         />
       </template>
     </UHeader>
 
-    <UMain>
+    <UMain id="main-content">
       <NuxtPage />
     </UMain>
 
