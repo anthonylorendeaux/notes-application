@@ -70,6 +70,24 @@ const description = computed(() => {
   return undefined
 })
 
+// The header repeats the description above the body: hide it when it only
+// duplicates the start of the first paragraph (a simple normalized-prefix
+// check; duplicated descriptions are cleaned up in the content itself).
+const headerDescription = computed(() => {
+  const raw = page.value?.description
+  if (!raw) return undefined
+  const excerpt = page.value?.body ? noteExcerpt(page.value.body) : undefined
+  if (!excerpt) return raw
+  const normalize = (text: string) => text.toLowerCase().replace(/\s+/g, ' ').trim()
+  const normalizedDescription = normalize(raw)
+  const excerptStart = normalize(excerpt).replace(/…$/, '')
+  if (!excerptStart) return raw
+  if (excerptStart.startsWith(normalizedDescription) || normalizedDescription.startsWith(excerptStart)) {
+    return undefined
+  }
+  return raw
+})
+
 // Folder index cards need note metadata (date, category, excerpt) and the
 // header shows stats computed over every descendant note.
 const { data: folderData } = await useAsyncData(`${path}-index`, async () => {
@@ -90,10 +108,27 @@ const { data: folderData } = await useAsyncData(`${path}-index`, async () => {
 
   const latestTimestamp = rows.reduce((max, row) => Math.max(max, noteTimestamp(row.meta?.created)), 0)
 
-  return { notes: toNoteCards(notes), count: rows.length, latest: formatNoteDate(latestTimestamp) }
+  // Latest note date per immediate sub-folder, for the folder cards below.
+  // Rows hold every descendant: a row belongs to a child when it is the
+  // child note itself or lives under its path.
+  const latestByFolder: Record<string, string> = {}
+  for (const child of folder.value.children ?? []) {
+    if (!isFolderNode(child)) continue
+    const childPrefix = `${child.path}/`
+    const childLatest = rows.reduce((max, row) => row.path === child.path || row.path.startsWith(childPrefix)
+      ? Math.max(max, noteTimestamp(row.meta?.created))
+      : max, 0)
+    const formatted = formatNoteDate(childLatest)
+    if (formatted) latestByFolder[child.path] = formatted
+  }
+
+  return { notes: toNoteCards(notes), count: rows.length, latest: formatNoteDate(latestTimestamp), latestByFolder }
 })
 
-const subFolders = computed(() => toFolderCards(folder.value?.children))
+const subFolders = computed(() => toFolderCards(folder.value?.children).map(card => ({
+  ...card,
+  latest: folderData.value?.latestByFolder[card.path]
+})))
 
 const breadcrumbItems = computed(() => {
   if (!folder.value) return []
@@ -124,6 +159,8 @@ useSeoMeta({
 <template>
   <UContainer>
     <UPage v-if="page">
+      <ReadingProgress />
+
       <template #left>
         <UPageAside>
           <UContentNavigation
@@ -135,22 +172,35 @@ useSeoMeta({
 
       <UPageHeader
         :title="page.title"
-        :description="page.description"
+        :description="headerDescription"
       >
         <template #links>
           <UButton
-            label="Modifier"
             icon="i-lucide-pencil"
             color="neutral"
             variant="outline"
+            size="sm"
+            aria-label="Modifier"
             :to="`/_studio?redirect=${encodeURIComponent(path)}`"
             external
-          />
+          >
+            <span class="hidden sm:inline">Modifier</span>
+          </UButton>
         </template>
       </UPageHeader>
 
+      <UContentToc
+        v-if="page.body?.toc?.links?.length"
+        :links="page.body.toc.links"
+        title="Sommaire"
+        class="lg:hidden"
+      />
+
       <UPageBody>
-        <ContentRenderer :value="page" />
+        <!-- eslint-disable-next-line better-tailwindcss/no-unknown-classes -- Custom reading styles from main.css, not a Tailwind utility -->
+        <div class="prose-note">
+          <ContentRenderer :value="page" />
+        </div>
 
         <USeparator v-if="surround?.some(Boolean)" />
 
@@ -161,7 +211,9 @@ useSeoMeta({
         v-if="page.body?.toc?.links?.length"
         #right
       >
-        <UContentToc :links="page.body.toc.links" />
+        <div class="hidden lg:block">
+          <UContentToc :links="page.body.toc.links" />
+        </div>
       </template>
     </UPage>
 
