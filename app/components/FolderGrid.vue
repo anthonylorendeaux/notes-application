@@ -5,9 +5,6 @@ defineProps<{ folders: FolderCardData[] }>()
 </script>
 
 <template>
-  <!-- P0 tokens (bg-surface, border-line, text-ink) land with the P0 theme;
-    unknown classes until then, order is still linted. -->
-  <!-- eslint-disable better-tailwindcss/no-unknown-classes -->
   <ul class="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
     <li
       v-for="folder in folders"
@@ -35,5 +32,4 @@ defineProps<{ folders: FolderCardData[] }>()
       </NuxtLink>
     </li>
   </ul>
-  <!-- eslint-enable better-tailwindcss/no-unknown-classes -->
 </template>

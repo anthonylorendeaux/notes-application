@@ -5,9 +5,6 @@ defineProps<{ notes: NoteCardData[] }>()
 </script>
 
 <template>
-  <!-- P0 tokens (bg-surface, border-line, text-ink) land with the P0 theme;
-    unknown classes until then, order is still linted. -->
-  <!-- eslint-disable better-tailwindcss/no-unknown-classes -->
   <ul>
     <li
       v-for="note in notes"
@@ -55,5 +52,4 @@ defineProps<{ notes: NoteCardData[] }>()
       </NuxtLink>
     </li>
   </ul>
-  <!-- eslint-enable better-tailwindcss/no-unknown-classes -->
 </template>
