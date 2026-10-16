@@ -13,7 +13,7 @@ defineProps<{ folders: FolderCardData[] }>()
     >
       <NuxtLink
         :to="folder.path"
-        class="flex flex-col gap-1 py-4 hover:bg-surface focus-visible:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+        class="-mx-3 flex flex-col gap-1 rounded-md px-3 py-4 hover:bg-surface focus-visible:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
       >
         <span class="flex min-w-0 items-center gap-3">
           <UIcon
