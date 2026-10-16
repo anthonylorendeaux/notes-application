@@ -5,24 +5,31 @@ defineProps<{ folders: FolderCardData[] }>()
 </script>
 
 <template>
-  <UPageGrid>
-    <UPageCard
+  <ul class="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
+    <li
       v-for="folder in folders"
       :key="folder.path"
-      :to="folder.path"
-      icon="i-lucide-folder"
-      :title="folder.title"
-      :description="folder.description"
-      spotlight
+      class="border-b border-line"
     >
-      <template #footer>
-        <UBadge
-          color="neutral"
-          variant="subtle"
-          icon="i-lucide-file-text"
-          :label="formatNoteCount(folder.count)"
-        />
-      </template>
-    </UPageCard>
-  </UPageGrid>
+      <NuxtLink
+        :to="folder.path"
+        class="flex flex-col gap-1 py-4 hover:bg-surface focus-visible:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+      >
+        <span class="flex min-w-0 items-center gap-3">
+          <UIcon
+            name="i-lucide-folder"
+            class="size-5 shrink-0 text-muted"
+          />
+          <span class="truncate font-sans font-semibold text-ink">
+            {{ folder.title }}
+          </span>
+        </span>
+
+        <span class="flex flex-col gap-0.5 pl-8 text-sm text-muted sm:items-end sm:pl-0 sm:text-right">
+          <span class="tabular-nums">{{ formatNoteCount(folder.count) }}</span>
+          <span v-if="folder.latest">Mise à jour le {{ folder.latest }}</span>
+        </span>
+      </NuxtLink>
+    </li>
+  </ul>
 </template>
