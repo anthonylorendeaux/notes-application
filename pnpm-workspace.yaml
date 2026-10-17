@@ -5,3 +5,5 @@ allowBuilds:
   unrs-resolver: false
   vue-demi: false
   sharp: false
+minimumReleaseAgeExclude:
+  - nuxt-studio@1.8.0
