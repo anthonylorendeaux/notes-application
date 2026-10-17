@@ -5,8 +5,6 @@ tags: projet
 created: 2026-01-01T23:24:00.000Z
 ---
 
-# Analyse des risques
-
 ## Étapes de gestion de projet
 
 ```mermaid
@@ -78,7 +76,7 @@ Plusieurs étapes :
 
 > Criticité = Gravité × Occurrence × Détection
 
-# Workshop
+## Workshop
 
 ## Spécification
 

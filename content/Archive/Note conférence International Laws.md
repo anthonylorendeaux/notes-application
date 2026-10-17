@@ -5,7 +5,7 @@ tags: projet
 created: 2026-01-01T23:24:00.000Z
 ---
 
-# Definition and context
+## Definition and context
 
 Three types of international laws:
 
@@ -13,13 +13,13 @@ Three types of international laws:
 - **Technical** : Includes economic laws, financial relations, the law of the sea / space…
 - **Moral** : Includes prohibition of the use of force, disarmament, human rights…
 
-# Challenges
+## Challenges
 
 International law is almost 350 years old. It's challenged by many non-European developing countries NGOs and until 1989 by so-called communist bloc countries.
 
 The very principle is about the equality between States, one of the bases of public international law, is sometimes disputed in the name of the will of developing countries to create a countervailing inequality.
 
-## Crisis of international law
+### Crisis of international law
 
 We talk about crisis of international law with three main axes :
 
@@ -27,9 +27,9 @@ We talk about crisis of international law with three main axes :
 2. The challenge to the universality of international law by formerly colonized states that use international law to establish an unequal sharing of wealth.
 3. The proliferation of international organizations creates new powers that seek to exist by opposing states.
 
-# International Law: a response to the challenges of today's world ?
+## International Law: a response to the challenges of today's world ?
 
-## International law as a diplomatic discourse
+### International law as a diplomatic discourse
 
 For some people international law only serve the interests of the most powerful States.
 
@@ -39,21 +39,21 @@ Public international law, although disputed has become an obligatory, reference 
 
 Those laws should remain only instruments of the organization of international society.
 
-## Opposing conceptions
+### Opposing conceptions
 
 1. A conception that offers a sacred value to international law : it would be superior to any instrumentalization by the political leaders of the States.
 2. For others, is it always used inevitably as a tool.
 3. In order to adapt circumstances, international law must remain an instrument to serve the organization of international society.
 
-# Reflections on International Justice: Scope and limits
+## Reflections on International Justice: Scope and limits
 
-## International Justice: Scope and limits
+### International Justice: Scope and limits
 
 - The proliferation of international jurisdictions over the past decade has introduced a new problem in international issues.
 - How does the globalization of justice affect the conventional functioning of international relations ?
 - Although there is a veritable field of experimentation where the traditional limits of international law are rejected, international justice is still largely dominated by the sovereignty of states.
 
-# International Labor Law
+## International Labor Law
 
 - The International Labor Organization (ILO) was created in 1919.
 - Declaration of Philadelphia (1944) : Work is not a commodity!
@@ -66,7 +66,7 @@ The main objectives of the ILO are to:
 - develop social protection;
 - strengthen social dialogue in the field of work.
 
-## Labor rights
+### Labor rights
 
 Two types of international treaties and agreements :
 
@@ -75,7 +75,7 @@ Two types of international treaties and agreements :
 
 The ILO is a UN agency specialized in labor issues. The ILO has a permanent administrative body, the International Labor Office and a non-permanent deliberative body called the International Labor Conference. This conference meets once a year in Geneva and is composed of delegations from ILO member states.
 
-## Fundamental rights
+### Fundamental rights
 
 The international labor organization (ILO) has defined four fundamental rights :
 
@@ -84,13 +84,13 @@ The international labor organization (ILO) has defined four fundamental rights :
 - The effective abolition of child labor.
 - The elimination of discrimination in respect of employment and occupation.
 
-# International Trade Law
+## International Trade Law
 
-## Definition
+### Definition
 
 International trade law is a complex legal framework that governs the exchange of goods, services, and capital across national borders. It comprises a combination of domestic laws, international treaties, conventions, and agreements that regulate international commerce. The primary goal of international trade law is to promote fair and efficient trade practices between nations, remove barriers to trade, protect intellectual property rights, and resolve disputes that may arise in the course of global economic transactions. Key organizations involved in shaping international trade law include the World Trade Organization (WTO), the United Nations Commission on International Trade Law (UNCITRAL), and regional trade organizations like the European Union (EU) and the North American Free Trade Agreement (NAFTA).
 
-## Example of legal difficulties : China
+### Example of legal difficulties : China
 
 - Intellectual property rights: Accusations of theft, counterfeiting, and forced technology transfers.
 - Market access: Restrictions on foreign companies' access to the Chinese market through policies and regulations.
@@ -99,7 +99,7 @@ International trade law is a complex legal framework that governs the exchange o
 - Transparency: Lack of transparency in regulatory and decision-making processes, causing difficulties for foreign businesses.
 - Dispute resolution: Contentious participation in the WTO's dispute resolution system, with concerns about China's compliance with rulings.
 
-## Study Case
+### Study Case
 
 - **Case** : Philip Morris vs Australia
 - **What is it about** : Tobacco giant sues Australia over plain packaging for cigarettes
@@ -124,7 +124,7 @@ Significance of the case:
 - **Investor-state dispute settlement (ISDS)**: The case brought attention to the ISDS mechanism, sparking debates on its effectiveness, transparency, and potential reform.
 - **Precedent for tobacco control**: The outcome of the case was seen as a victory for public health and tobacco control, encouraging other countries to pursue similar plain packaging laws and assert their regulatory powers in the face of investor challenges.
 
-# General Conclusion
+## General Conclusion
 
 - Now there is 190 states that are recognized. The levels of economic, social, ideological and other development of these states vary greatly. As a result it is increasingly difficult to reach agreement on the adoption of international texts.
 - There is some exceptions: Europe adopts precise standards and demonstrates strong integration.

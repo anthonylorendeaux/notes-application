@@ -9,7 +9,7 @@ tags: [Fiche]
 
 Elasticsearch est un moteur de recherche open source basé sur Apache Lucene. Il fournit une technologie de recherche distribuée et hautement scalable pour répondre à des besoins analytiques spécifiques. Il est principalement utilisé pour indexer et analyser des données à grande échelle, ainsi que pour effectuer des recherches en temps réel.
 
-## Aperçu de ses fonctionnalité
+## Aperçu de ses fonctionnalités
 
 Les principales fonctionnalités d'Elasticsearch sont :
 
@@ -19,9 +19,9 @@ Les principales fonctionnalités d'Elasticsearch sont :
 - Prise en charge des clusters – Elasticsearch prend en charge la mise en cluster des serveurs, ce qui permet une scalabilité et une fiabilité accrues.
 - Architecture RESTful – Elasticsearch utilise une architecture RESTful, ce qui signifie qu'il peut être intégré à toute application qui supporte la même architecture.
 
-# Explication de l'utilisation d'Elasticsearch
+## Explication de l'utilisation d'Elasticsearch
 
-## Indexation et recherche
+### Indexation et recherche
 
 L'indexation consiste à mettre les données dans un format spécifique qui permet de les rechercher plus rapidement. Avec Elasticsearch, cela signifie que vous pouvez indexer des données à partir de sources telles que des bases de données, des fichiers CSV, des documents JSON ou même du texte brut.
 
@@ -55,7 +55,7 @@ IndexRequest indexRequest = new IndexRequest("tutorials")
 IndexResponse indexResponse = client.index(indexRequest, RequestOptions.DEFAULT);
 ```
 
-## Analyse et agrégation
+### Analyse et agrégation
 
 L'analyse et les aggrégations sont des fonctionnalités clés d'Elasticsearch qui permettent d'analyser et d'agréger des données à partir des documents indexés. Ces fonctionnalités sont très puissantes et peuvent être utilisées pour effectuer des recherches avancées, des statistiques et des agrégations.
 
@@ -97,7 +97,7 @@ for (Terms.Bucket bucket : termsAgg.getBuckets()) {
 }
 ```
 
-## Stockage et gestion des données
+### Stockage et gestion des données
 
 Elasticsearch stocke et gère les données à l'aide de documents JSON qui sont indexés et stockés dans des index. Un index est une collection de documents qui partagent un certain schéma et qui sont accessibles en utilisant une API RESTful.
 
@@ -143,9 +143,9 @@ DeleteRequest deleteRequest = new DeleteRequest("utilisateurs", "1");
 DeleteResponse deleteResponse = client.delete(deleteRequest);
 ```
 
-# Exemples d'utilisation avec Java
+## Exemples d'utilisation avec Java
 
-## Afficher des données indexées
+### Afficher des données indexées
 
 ```java
 // Créez un client ElasticSearch
@@ -161,7 +161,7 @@ for (SearchHit hit : response.getHits().getHits()) {
 }
 ```
 
-## Utiliser des requêtes pour effectuer des recherches
+### Utiliser des requêtes pour effectuer des recherches
 
 ```java
 import org.elasticsearch.action.search.SearchResponse;
@@ -177,7 +177,7 @@ SearchResponse response = client.prepareSearch("index_name")
     .actionGet();
 ```
 
-## Effectuer des opération d'agrégation
+### Effectuer des opération d'agrégation
 
 ```bash
 // Créer une nouvelle requête
@@ -198,6 +198,6 @@ SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFA
 Terms terms = searchResponse.getAggregations().get("agg");
 ```
 
-# Conclusion
+## Conclusion
 
 Elasticsearch est un moteur de recherche open source performant et évolutif qui offre une excellente connectivité avec les applications et les systèmes de bases de données. Il permet aux utilisateurs de rechercher rapidement des informations à partir de données structurées ou non structurées. Il est facile à installer et à configurer, et offre des fonctionnalités puissantes et des méthodes d'indexation et d'interrogation flexibles. Sa grande scalabilité et ses performances élevées en font une solution de recherche idéale pour les entreprises de toutes tailles.

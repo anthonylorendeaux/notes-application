@@ -5,14 +5,14 @@ tags: []
 created: 2026-01-01
 ---
 
-# Pépites
+## Pépites
 
 |  | Lundi | Mardi |
 | --- | --- | --- |
 | Matin | Le premier point est celui de voir l'équipe comme une équipe de foot, avec la notion de cohésion au centre des préoccupations. Cela permet à l'équipe de performer sans tenir compte de compétences des collaborateurs. Le second point correspond aux différents stades qu'une équipe peut avoir. Celui-ci m'a semblé important car il se reflète dans mon équipe actuelle, sur de nombreuses prises de décisions. Ces stades sont les suivants : la formation (Découverte du projet et répartition des tâches / responsabilités), storming (tension, divergences et conflits), norming (règles, rôles, coopération et cohésion), performing (accomplissement, renforcement, leadership…), adjourning (séparation, retour, reconnaissance, nouvelle équipe…) | Le premier point est la gestion du temps que l'on a vu sur l'exercice de relation constructives.Nous avons pu voir qu'en fonction des personnes la manière de réaliser des tâches sont différentes. Hiérarchisation des taches un étudiant ne voit pas la vie et le temps selon le même temps qu'une personne dans la vie active. Les tests de personnalité (16 personnalité), m'a permis de me rendre compte de certaines décisions que je prends dans la vie ainsi que ma manière de travailler. |
 | Après-midi | Déroulé de réunion : Les différentes étapes qu'il faut suivre pour une délégation. Le cadrage en début, le langage non verbal, le fil conducteur, la reformulation et la la clôture. Matrice d'eisenhower : c'est un outil qui est nouveau pour moi et qui semble très pratique dans la vie professionnel. Elle permet de classer rapidement les tâches pour rester dans les temps ce qui peut être très utile en méthode agile. | Le premier point concerne la manière d'écouter, dans le ted talk j'ai pu comprendre qu'il était préférable dans certains cas de seulement écouter une personne même si nous avons envie de répondre mais aussi que s'écouter soit-même peut être bénéfique. La seconde pépite de cette demie-journée est la suivante : le rapport à soi-même, et comment on doit s'estimer soit-même et comment changer son regard pour gagner en confiance. |
 
-# Smart du séminaire
+## Smart du séminaire
 
 Dans mon parcours de développement en tant que futur manager, mon objectif SMART est d'acquérir des compétences et des stratégies pour mieux travailler avec les différents types de personnalité dans un contexte de gestion d'équipe, afin de favoriser une meilleure collaboration, une plus grande motivation et une productivité accrue.
 

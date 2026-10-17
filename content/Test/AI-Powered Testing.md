@@ -9,9 +9,9 @@ L'**AI-Powered Testing** consiste à utiliser des LLMs (Claude, GPT-4, etc.) pou
 
 ---
 
-# 1. Générer des tests unitaires avec Claude
+## 1. Générer des tests unitaires avec Claude
 
-## Prompt de base — générer des tests Jest
+### Prompt de base — générer des tests Jest
 
 La méthode la plus simple : donner le fichier source à Claude et lui demander les tests.
 
@@ -26,7 +26,7 @@ Génère des tests Jest complets pour ce service :
 - Mock des dépendances injectées
 ```
 
-## Exemple — tester un service Angular
+### Exemple — tester un service Angular
 
 **Source : `user.service.ts`**
 
@@ -97,7 +97,7 @@ describe('UserService', () => {
 
 ---
 
-# 2. Générer des tests avec Claude Code
+## 2. Générer des tests avec Claude Code
 
 Dans le terminal, directement dans ton projet :
 
@@ -121,9 +121,9 @@ Claude Code va :
 
 ---
 
-# 3. Revue de code automatisée
+## 3. Revue de code automatisée
 
-## Prompt de revue
+### Prompt de revue
 
 ```
 Review ce composant Angular en tant que senior dev :
@@ -136,7 +136,7 @@ Review ce composant Angular en tant que senior dev :
 [coller le fichier]
 ```
 
-## Exemple de retour Claude
+### Exemple de retour Claude
 
 ```
 🔴 Critique
@@ -154,11 +154,11 @@ Review ce composant Angular en tant que senior dev :
 
 ---
 
-# 4. Détecter les edge cases oubliés
+## 4. Détecter les edge cases oubliés
 
 L'IA excelle pour trouver les cas que le dev n'a pas pensé à tester.
 
-## Prompt
+### Prompt
 
 ```
 Voici ma fonction et ses tests actuels.
@@ -171,7 +171,7 @@ Tests existants :
 [tests]
 ```
 
-## Exemple — fonction de calcul de prix
+### Exemple — fonction de calcul de prix
 
 ```tsx
 // Fonction
@@ -196,9 +196,9 @@ Edge cases manquants :
 
 ---
 
-# 5. Générer des tests E2E (Cypress / Playwright)
+## 5. Générer des tests E2E (Cypress / Playwright)
 
-## Prompt Cypress
+### Prompt Cypress
 
 ```
 Génère un test Cypress pour ce scénario :
@@ -209,7 +209,7 @@ Génère un test Cypress pour ce scénario :
 - Voit son nom affiché dans le header
 ```
 
-## Test Cypress généré
+### Test Cypress généré
 
 ```tsx
 describe('Login Flow', () => {
@@ -243,7 +243,7 @@ describe('Login Flow', () => {
 
 ---
 
-# 6. Skill CLAUDE.md — tests automatiques
+## 6. Skill CLAUDE.md — tests automatiques
 
 Ajouter dans ton `CLAUDE.md` pour que Claude génère toujours des tests :
 
@@ -274,7 +274,7 @@ Ajouter dans ton `CLAUDE.md` pour que Claude génère toujours des tests :
 
 ---
 
-# 7. Workflow complet AI Testing
+## 7. Workflow complet AI Testing
 
 ```bash
 # 1. Lancer Claude Code
@@ -299,7 +299,7 @@ claude
 
 ---
 
-# Bonnes pratiques
+## Bonnes pratiques
 
 - **Toujours relire** les tests générés — l'IA peut produire des tests qui passent sans rien valider
 - **Ajouter `data-cy`** sur les éléments HTML clés pour faciliter les tests E2E
@@ -309,7 +309,7 @@ claude
 
 ---
 
-# Résumé
+## Résumé
 
 | Use case | Outil recommandé | Gain de temps |
 | --- | --- | --- |

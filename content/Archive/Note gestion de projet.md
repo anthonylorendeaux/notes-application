@@ -5,11 +5,11 @@ tags: projet
 created: 2026-01-01T23:24:00.000Z
 ---
 
-# Présentation
+## Présentation
 
-# Notes
+## Notes
 
-# Note de cadrage (Business Case)
+## Note de cadrage (Business Case)
 
 - **Contexte et enjeux**
 - **Contraintes** :
@@ -18,7 +18,7 @@ created: 2026-01-01T23:24:00.000Z
   - Coût (estimation)
 - **Acteurs et parties prenantes**
 
-# Workshop
+## Workshop
 
 **Context** :
 
@@ -45,9 +45,9 @@ The purpose of this project is to :
 - There will be a vegetable garden of at least 10m2.
 - The budget for the project is 100,000 euros, with the possibility of additional funds through borrowing.
 
-# WBS
+## WBS
 
-# PMP
+## PMP
 
 - Note de cadrage
 - Analyses de risques
@@ -129,7 +129,7 @@ The main effect or problem that you want to address is the successful implementa
    - Obtaining certifications and recognition for materials, processes, and management systems
      - Reason : Insufficient expertise in meeting certification requirements
 
-# AMDEC
+## AMDEC
 
 | Failure Mode | Effects of Failure | Causes of Failure | Current Controls | Severity | Occurrence | Detection | Recommended Actions |
 | --- | --- | --- | --- | --- | --- | --- | --- |

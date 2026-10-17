@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { fr } from '@nuxt/ui/locale'
+import { fullNavigationKey, navigationKey } from '~/utils/folder'
 
 useHead({
   meta: [
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'robots', content: 'noindex, nofollow' }
   ],
   link: [
     { rel: 'icon', href: '/favicon.ico' }
@@ -28,11 +30,14 @@ const sectionNavigation = computed(() => {
 // Search sections are loaded client-side only, never in the rendered HTML.
 const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('notes'), { server: false })
 
-provide('navigation', sectionNavigation)
+provide(navigationKey, sectionNavigation)
+provide(fullNavigationKey, navigation)
 </script>
 
 <template>
   <UApp :locale="fr">
+    <NuxtLoadingIndicator />
+
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-[60] focus:rounded-md focus:bg-surface focus:px-4 focus:py-3 focus:font-sans focus:text-accent"
@@ -62,6 +67,16 @@ provide('navigation', sectionNavigation)
       </template>
 
       <template #body>
+        <UButton
+          v-if="sectionNavigation !== navigation"
+          to="/"
+          icon="i-lucide-arrow-left"
+          label="Tous les dossiers"
+          color="neutral"
+          variant="link"
+          class="mb-2 px-0 font-sans"
+        />
+
         <UContentNavigation
           :navigation="sectionNavigation"
           highlight

@@ -18,7 +18,7 @@ Requirements
 
 ### Problèmes
 
-- Vue d'Orlando en 80% - 100% sur écran de pc
+- Vue de l'application en 80% - 100% sur écran de PC
 
 ## Modèle de données
 
@@ -34,7 +34,7 @@ _id: ObjectId;key: String;revNumber: Number;operatorCode: String;fileId: String;
 
 ## Maquette
 
-https://www.figma.com/file/tTQOHXvtO7R9sBgq4SHEql/CIL—Mockup?node-id=0%3A1&t=Mx746wTrBvd55FGG-0
+Maquette d'interface CIL.
 
 ```mermaid
 gantt

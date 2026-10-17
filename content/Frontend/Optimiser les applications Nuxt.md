@@ -5,9 +5,6 @@ tags: [fiche]
 created: 2025-09-11
 ---
 
-Tags: Fiche
-Created Date: September 11, 2025
-
 ## Introduction
 
 Les Core Web Vitals (CWV) de Google mesurent l'expérience utilisateur réelle et impactent le référencement et les conversions. Nuxt offre des outils puissants pour optimiser ces métriques : Largest Contentful Paint (LCP), Interaction to Next Paint (INP) et Cumulative Layout Shift (CLS).

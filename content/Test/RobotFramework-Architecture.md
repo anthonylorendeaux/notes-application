@@ -5,8 +5,6 @@ tags: [fiche]
 created: 2026-01-01
 ---
 
-# Architecture en couches
-
 ## Principe
 
 Decoupage strict en 3 couches plus libraries pour separer les responsabilites et isoler les changements techniques.

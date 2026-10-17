@@ -5,9 +5,9 @@ category: Autres
 tags: [Fiche]
 ---
 
-# Commandes
+## Commandes
 
-## Pour commencer
+### Pour commencer
 
 `git init`
 
@@ -15,7 +15,7 @@ ou
 
 `git clone url`
 
-## Configuration
+### Configuration
 
 ```bash
 git config --global color.ui true
@@ -26,9 +26,9 @@ git config --global user.email foo@citrix.com
 git config --global diff.tool meld
 ```
 
-## Travailler avec une branche locale
+### Travailler avec une branche locale
 
-## Création de branches
+### Création de branches
 
 ```bash
 # Voir la liste de toutes les branches locales
@@ -50,7 +50,7 @@ git branch -d nom_de_branche
 git branch -D nom_de_branche
 ```
 
-## Mise à jour de la branche actuelle
+### Mise à jour de la branche actuelle
 
 **Flux standard**
 
@@ -133,7 +133,7 @@ git diff --no-commit-id --name-only --no-merges origin/master...
 git diff --stat
 ```
 
-## Travailler avec une branche distante
+### Travailler avec une branche distante
 
 ```bash
 # Voir la liste des dépôts distants disponibles. Si vous avez effectué un git clone,

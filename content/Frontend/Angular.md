@@ -5,21 +5,21 @@ category: Frontend
 tags: [Fiche]
 ---
 
-# Lazy Loading
+## Lazy Loading
 
-## **Introduction**
+### **Introduction**
 
 Le **Lazy Loading** est une technique utilisée dans les applications Angular pour charger des modules uniquement lorsqu'ils sont nécessaires, plutôt que de tout charger au démarrage de l'application. Cela permet d'améliorer les performances en réduisant le temps de chargement initial et en optimisant l'utilisation des ressources.
 
-## **Pourquoi utiliser le Lazy Loading ?**
+### **Pourquoi utiliser le Lazy Loading ?**
 
 - **Performances améliorées** : Réduit le temps de chargement initial de l'application.
 - **Optimisation des ressources** : Charge uniquement les modules nécessaires, économisant ainsi la bande passante et les ressources du navigateur.
 - **Meilleure expérience utilisateur** : Les utilisateurs peuvent interagir plus rapidement avec l'application.
 
-## **Comment implémenter le Lazy Loading ?**
+### **Comment implémenter le Lazy Loading ?**
 
-### **Étape 1 : Créer un module Angular**
+#### **Étape 1 : Créer un module Angular**
 
 Créez un module Angular que vous souhaitez charger de manière paresseuse. Par exemple, un module **`FeatureModule`**.
 
@@ -27,7 +27,7 @@ Créez un module Angular que vous souhaitez charger de manière paresseuse. Par 
 ng generate module feature --route feature --module app.module
 ```
 
-### **Étape 2 : Configurer les routes**
+#### **Étape 2 : Configurer les routes**
 
 Dans votre fichier **`app-routing.module.ts`**, configurez les routes pour charger le module de manière paresseuse.
 
@@ -51,7 +51,7 @@ const routes: Routes = [
 export class AppRoutingModule {}
 ```
 
-### **Étape 3 : Définir les routes du module**
+#### **Étape 3 : Définir les routes du module**
 
 Dans le fichier **`feature-routing.module.ts`**, définissez les routes spécifiques au module.
 
@@ -70,17 +70,17 @@ const routes: Routes = [
 export class FeatureRoutingModule {}
 ```
 
-### **Étape 4 : Utiliser le module**
+#### **Étape 4 : Utiliser le module**
 
 Maintenant, lorsque vous naviguez vers **`/feature`**, Angular chargera le **`FeatureModule`** de manière paresseuse.
 
-## **Avantages du Lazy Loading**
+### **Avantages du Lazy Loading**
 
 - **Réduction de la taille initiale du bundle** : Seuls les modules nécessaires sont chargés au démarrage.
 - **Amélioration de la vitesse de chargement** : Les utilisateurs accèdent plus rapidement aux fonctionnalités principales.
 - **Modularité accrue** : Facilite la gestion et la maintenance des modules indépendants.
 
-## **Conclusion**
+### **Conclusion**
 
 Le Lazy Loading est une technique essentielle pour optimiser les performances des applications Angular. En chargeant les modules uniquement lorsqu'ils sont nécessaires, vous pouvez offrir une meilleure expérience utilisateur et améliorer l'efficacité de votre application.
 
@@ -88,11 +88,11 @@ Le Lazy Loading est une technique essentielle pour optimiser les performances de
 
 [Angular](https://angular.dev/guide/routing/common-router-tasks#lazy-loading)
 
-# **Guards dans Angular**
+## **Guards dans Angular**
 
 Les **guards** dans Angular sont des services qui permettent de contrôler l'accès aux routes de ton application. Ils sont utilisés pour implémenter des logiques de protection ou de redirection avant qu'une route ne soit activée. Voici un aperçu des types de guards et de leur utilisation :
 
-### **Types de Guards**
+#### **Types de Guards**
 
 1. **CanActivate** :
     - Utilisé pour déterminer si une route peut être activée.
@@ -137,7 +137,7 @@ Les **guards** dans Angular sont des services qui permettent de contrôler l'acc
     - Utilisé pour empêcher le chargement asynchrone d'un module de route.
     - Permet de protéger l'accès à des modules lazy-loaded.
 
-### **Utilisation des Guards**
+#### **Utilisation des Guards**
 
 Pour utiliser un guard, tu dois l'ajouter à la configuration de tes routes dans le fichier **`app-routing.module.ts`** :
 
@@ -161,7 +161,7 @@ const routes: Routes = [
 export class AppRoutingModule {}
 ```
 
-### **Conclusion**
+#### **Conclusion**
 
 Les guards sont des outils puissants pour gérer l'accès et le flux de navigation dans une application Angular. Ils permettent de centraliser la logique de protection et de redirection, rendant ton code plus propre et maintenable.
 
@@ -169,11 +169,11 @@ Les guards sont des outils puissants pour gérer l'accès et le flux de navigati
 
 [Angular](https://angular.dev/api/router/CanActivate)
 
-# **Opérateurs RxJS**
+## **Opérateurs RxJS**
 
 **RxJS** (Reactive Extensions for JavaScript) est une bibliothèque pour la programmation réactive utilisant des observables, permettant de composer des opérations asynchrones et basées sur des événements. Les **opérateurs RxJS** sont des fonctions pures qui permettent de transformer, combiner, et gérer les flux de données émis par les observables. Voici un aperçu des principaux types d'opérateurs et de leur utilisation :
 
-### **Types d'Opérateurs**
+#### **Types d'Opérateurs**
 
 1. **Opérateurs de Création** :
     - Utilisés pour créer de nouveaux observables.
@@ -250,7 +250,7 @@ Les guards sont des outils puissants pour gérer l'accès et le flux de navigati
     ```
     
 
-### **Utilisation des Opérateurs**
+#### **Utilisation des Opérateurs**
 
 Les opérateurs sont généralement utilisés avec le **`pipe`** pour chaîner plusieurs transformations sur un observable :
 
@@ -266,7 +266,7 @@ of(1, 2, 3, 4, 5)
   .subscribe(value => console.log(value)); // Affiche 20, 40
 ```
 
-### **Conclusion**
+#### **Conclusion**
 
 Les opérateurs RxJS sont essentiels pour manipuler les flux de données de manière déclarative et réactive. Ils permettent de créer des applications robustes et maintenables en gérant efficacement les opérations asynchrones et basées sur des événements.
 
@@ -274,11 +274,11 @@ Les opérateurs RxJS sont essentiels pour manipuler les flux de données de mani
 
 [RxMarbles: Interactive diagrams of Rx Observables](https://rxmarbles.com/#mergeMap)
 
-# **NgRx : Gestion d'État pour Angular**
+## **NgRx : Gestion d'État pour Angular**
 
 **NgRx** est une bibliothèque de gestion d'état pour les applications Angular, inspirée par Redux. Elle permet de gérer l'état de manière prévisible et centralisée, facilitant ainsi le développement d'applications complexes. Voici un aperçu des concepts clés et de l'utilisation de NgRx :
 
-### **Concepts Clés**
+#### **Concepts Clés**
 
 1. **Store** :
     - Le store est un conteneur centralisé pour l'état de l'application.
@@ -353,7 +353,7 @@ Les opérateurs RxJS sont essentiels pour manipuler les flux de données de mani
     ```
     
 
-### **Utilisation de NgRx**
+#### **Utilisation de NgRx**
 
 Pour utiliser NgRx dans une application Angular, tu dois configurer le store, les reducers, et les effects dans ton module principal :
 
@@ -373,7 +373,7 @@ import { CounterEffects } from './counter.effects';
 export class AppModule {}
 ```
 
-### **Conclusion**
+#### **Conclusion**
 
 NgRx offre une solution robuste pour la gestion d'état dans les applications Angular, en fournissant une architecture claire et prévisible. Elle est particulièrement utile pour les applications de grande envergure où la gestion de l'état peut devenir complexe.
 
@@ -381,13 +381,13 @@ NgRx offre une solution robuste pour la gestion d'état dans les applications An
 
 [NgRx Docs](https://ngrx.io/docs)
 
-## Reactive forms
+### Reactive forms
 
 Les formulaires réactifs dans Angular offrent une approche pilotée par modèle pour gérer les entrées de formulaire dont les valeurs changent au fil du temps. Cette approche est idéale pour les formulaires complexes où vous devez gérer l'état des contrôles de formulaire de manière programmatique.
 
-## **Concepts Clés**
+### **Concepts Clés**
 
-### **FormControl**
+#### **FormControl**
 
 - **Description** : Représente un contrôle de formulaire individuel.
 - **Utilisation** : Utilisez **`FormControl`** pour créer et gérer l'état d'une entrée de formulaire unique.
@@ -399,7 +399,7 @@ Les formulaires réactifs dans Angular offrent une approche pilotée par modèle
     ```
     
 
-### **FormGroup**
+#### **FormGroup**
 
 - **Description** : Suit l'état de validité et la valeur d'un groupe d'instances **`FormControl`**.
 - **Utilisation** : Utilisez **`FormGroup`** pour gérer plusieurs contrôles de formulaire comme une seule unité.
@@ -414,7 +414,7 @@ Les formulaires réactifs dans Angular offrent une approche pilotée par modèle
     ```
     
 
-### **FormArray**
+#### **FormArray**
 
 - **Description** : Suit un tableau d'instances **`FormControl`**, **`FormGroup`** ou **`FormArray`**.
 - **Utilisation** : Utilisez **`FormArray`** pour gérer une liste de contrôles ou de groupes de formulaires.
@@ -429,7 +429,7 @@ Les formulaires réactifs dans Angular offrent une approche pilotée par modèle
     ```
     
 
-### **FormBuilder**
+#### **FormBuilder**
 
 - **Description** : Fournit un moyen pratique de créer des instances de **`FormControl`**, **`FormGroup`** et **`FormArray`**.
 - **Utilisation** : Utilisez **`FormBuilder`** pour simplifier la création de contrôles et de groupes de formulaires.
@@ -446,7 +446,7 @@ Les formulaires réactifs dans Angular offrent une approche pilotée par modèle
     ```
     
 
-## **Validation**
+### **Validation**
 
 - **Validateurs intégrés** : Angular fournit des validateurs intégrés comme **`required`**, **`minlength`**, **`maxlength`**, etc.
 - **Validateurs personnalisés** : Créez des validateurs personnalisés pour une logique de validation spécifique.
@@ -458,7 +458,7 @@ Les formulaires réactifs dans Angular offrent une approche pilotée par modèle
     ```
     
 
-## **Gestion de la soumission du formulaire**
+### **Gestion de la soumission du formulaire**
 
 - **Soumission du formulaire** : Utilisez la valeur du formulaire pour gérer la soumission du formulaire.
 - **Exemple** :
@@ -472,13 +472,13 @@ Les formulaires réactifs dans Angular offrent une approche pilotée par modèle
     ```
     
 
-## **Avantages**
+### **Avantages**
 
 - **Gestion explicite** : Fournit une gestion explicite de l'état et de la validation du formulaire.
 - **Évolutivité** : Adapté aux grands formulaires complexes.
 - **Testabilité** : Plus facile à tester grâce à la séparation de la logique du formulaire du modèle.
 
-## **Cas d'utilisation**
+### **Cas d'utilisation**
 
 - **Formulaires complexes** : Idéal pour les formulaires avec validation complexe et champs dynamiques.
 - **Gestion de l'état** : Lorsque vous devez gérer l'état du formulaire de manière programmatique.
@@ -487,13 +487,13 @@ Les formulaires réactifs dans Angular offrent une approche pilotée par modèle
 
 [Angular](https://angular.dev/guide/forms/reactive-forms#)
 
-# Les Signaux
+## Les Signaux
 
 Les Signals dans Angular fournissent un moyen de gérer l'état réactif et le flux de données dans vos applications. Ils permettent de créer des variables réactives qui mettent automatiquement à jour l'interface utilisateur lorsque leurs valeurs changent.
 
-## **Concepts Clés**
+### **Concepts Clés**
 
-### **Signal**
+#### **Signal**
 
 - **Description** : Représente une variable réactive qui contient une valeur et peut notifier les abonnés lorsque cette valeur change.
 - **Utilisation** : Utilisez **`Signal`** pour créer des variables d'état réactives dans vos composants.
@@ -505,7 +505,7 @@ Les Signals dans Angular fournissent un moyen de gérer l'état réactif et le f
     ```
     
 
-### **Effect**
+#### **Effect**
 
 - **Description** : Un effect est une fonction qui s'exécute en réponse aux changements d'un signal.
 - **Utilisation** : Utilisez **`Effect`** pour effectuer des effets secondaires, comme la mise à jour du DOM ou les appels API, lorsqu'un signal change.
@@ -519,7 +519,7 @@ Les Signals dans Angular fournissent un moyen de gérer l'état réactif et le f
     ```
     
 
-### **Computed**
+#### **Computed**
 
 - **Description** : Un signal calculé est un signal dont la valeur est dérivée d'autres signaux.
 - **Utilisation** : Utilisez **`Computed`** pour créer des signaux qui dépendent d'autres signaux.
@@ -531,7 +531,7 @@ Les Signals dans Angular fournissent un moyen de gérer l'état réactif et le f
     ```
     
 
-## **Création et Utilisation des Signals**
+### **Création et Utilisation des Signals**
 
 - **Initialisation** : Initialisez les signaux dans votre composant ou service.
 - **Exemple** :
@@ -554,13 +554,13 @@ Les Signals dans Angular fournissent un moyen de gérer l'état réactif et le f
     ```
     
 
-## **Avantages**
+### **Avantages**
 
 - **Réactivité** : Met automatiquement à jour l'interface utilisateur lorsque la valeur du signal change.
 - **Simplicité** : Simplifie la gestion de l'état en réduisant le code boilerplate.
 - **Performance** : Optimise les performances en minimisant les rendus inutiles.
 
-## **Cas d'Utilisation**
+### **Cas d'Utilisation**
 
 - **Gestion de l'État** : Idéal pour gérer l'état au niveau des composants.
 - **Gestion des Formulaires** : Utilisez les signaux pour gérer l'état et la validation des formulaires.

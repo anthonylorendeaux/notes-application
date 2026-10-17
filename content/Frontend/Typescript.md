@@ -5,7 +5,7 @@ category: Frontend
 tags: [Fiche]
 ---
 
-# Introduction
+## Introduction
 
 TypeScript est un langage de programmation open-source développé par Microsoft. Il s'agit d'une surcouche de typage statique pour JavaScript, ce qui signifie qu'il ajoute des fonctionnalités de typage avancées au JavaScript traditionnel. TypeScript vise à améliorer le développement d'applications JavaScript en ajoutant des vérifications de type statique lors de la compilation, ce qui permet de détecter et de prévenir les erreurs potentielles avant même d'exécuter le code.
 
@@ -21,9 +21,9 @@ Voici quelques concepts clés et caractéristiques de TypeScript :
 
 En résumé, TypeScript est une extension du langage JavaScript qui ajoute des fonctionnalités de typage statique et d'autres améliorations au développement d'applications web et d'autres types de logiciels. Cela permet de détecter les erreurs plus tôt dans le processus de développement, d'améliorer la documentation du code et de faciliter la maintenance à long terme.
 
-# Cheatsheet
+## Cheatsheet
 
-## Basic types
+### Basic types
 
 ```tsx
 any
@@ -51,7 +51,7 @@ enum Color {
 let c: Color = Color.Green
 ```
 
-## Declarations
+### Declarations
 
 ```tsx
 let isDone: boolean
@@ -66,16 +66,16 @@ function add (a: number, b: number): number {
 function add (a: number, b: number) { ... }
 ```
 
-## Type assertions
+### Type assertions
 
-### Variables
+#### Variables
 
 ```tsx
 let len: number = (input as string).length
 let len: number = (<string>input).length  /* not allowed in JSX */
 ```
 
-### Functions
+#### Functions
 
 ```tsx
 function object(this: {a: number, b: number}, a: number, b: number) {
@@ -88,9 +88,9 @@ let a = object(1,2);
 // a has type {a: number, b: number}
 ```
 
-## Interfaces
+### Interfaces
 
-### Inline
+#### Inline
 
 ```tsx
 function printLabel (options: { label: string }) {
@@ -101,7 +101,7 @@ function getUser (): { name: string; age?: number } {
 }
 ```
 
-### Explicit
+#### Explicit
 
 ```tsx
 interface LabelOptions {
@@ -110,7 +110,7 @@ interface LabelOptions {
 function printLabel(options: LabelOptions) { ... }
 ```
 
-### Optional properties
+#### Optional properties
 
 ```tsx
 interface User {
@@ -119,7 +119,7 @@ interface User {
 }
 ```
 
-### Read only
+#### Read only
 
 ```tsx
 interface User {
@@ -127,7 +127,7 @@ interface User {
 }
 ```
 
-### Dynamic keys
+#### Dynamic keys
 
 ```tsx
 interface MyInterface {
@@ -135,15 +135,15 @@ interface MyInterface {
 }
 ```
 
-## Type aliases
-
 ### Type aliases
+
+#### Type aliases
 
 ```tsx
 type Name = string | string[]
 ```
 
-### Intersection
+#### Intersection
 
 ```tsx
 interface Colorful { ... }
@@ -151,7 +151,7 @@ interface Circle { ... }
 type ColorfulCircle = Colorful & Circle;
 ```
 
-## Function types
+### Function types
 
 ```tsx
 interface User { ... }
@@ -159,7 +159,7 @@ function getUser(callback: (user: User) => any) { callback({...}) }
 getUser(function (user: User) { ... })
 ```
 
-## Classes
+### Classes
 
 ```tsx
 class Point {
@@ -173,7 +173,7 @@ class Point {
 }
 ```
 
-### Inheritance
+#### Inheritance
 
 ```tsx
 class Point {...}
@@ -182,7 +182,7 @@ interface Colored {...}
 class Pixel extends Point implements Colored {...}
 ```
 
-### Short fields initialisation
+#### Short fields initialisation
 
 ```tsx
 class Point {
@@ -194,7 +194,7 @@ class Point {
 }
 ```
 
-### Fields which do not require initialisation
+#### Fields which do not require initialisation
 
 ```tsx
 class Point {
@@ -203,7 +203,7 @@ class Point {
 }
 ```
 
-## Generics
+### Generics
 
 ```tsx
 class Greeter<T> {
@@ -215,13 +215,13 @@ class Greeter<T> {
 let greeter = new Greeter<string>('Hello, world')
 ```
 
-## Modules
+### Modules
 
 ```tsx
 export interface User { ... }
 ```
 
-## Type extraction
+### Type extraction
 
 ```tsx
 interface Building {
@@ -233,14 +233,14 @@ interface Building {
 type Walls = Building['room']['walls']; // string[]
 ```
 
-## Keyof Type Operator
+### Keyof Type Operator
 
 ```tsx
 type Point = { x: number; y: number };
 type P = keyof Point; // x | y
 ```
 
-## Conditional Types
+### Conditional Types
 
 ```tsx
 // SomeType extends OtherType ? TrueType : FalseType;
@@ -248,7 +248,7 @@ type ToArray<T> = T extends any ? T[] : never;
 type StrArrOrNumArr = ToArray<string | number>; // string[] | number[]
 ```
 
-### Inferring
+#### Inferring
 
 ```tsx
 type GetReturnType<T> = T extends (...args: unknown[]) => infer R
@@ -262,14 +262,14 @@ type First<T extends Array<any>> = T extends [infer F, ...infer Rest] ? F : neve
 type Str = First<['hello', 1, false]>; // 'hello'
 ```
 
-## Literal Type
+### Literal Type
 
 ```tsx
 const point = { x: 4, y: 2 }; // { x: number, y: number }
 const literalPoint = { x: 4, y: 2 } as const; // { readonly x: 4, readonly y: 2 };
 ```
 
-## Template Literal Types
+### Template Literal Types
 
 ```tsx
 type SpaceChar = ' ' | '\n' | '\t';
@@ -277,11 +277,11 @@ type TrimLeft<S extends string> = S extends `${SpaceChar}${infer Rest}` ? TrimLe
 type Str = TrimLeft<'    hello'>; // 'hello'
 ```
 
-# Méthodes utiles
+## Méthodes utiles
 
-## Array
+### Array
 
-### Array.prototype.filter()
+#### Array.prototype.filter()
 
 En TypeScript (et en JavaScript), la méthode `filter` est utilisée pour créer un nouveau tableau contenant tous les éléments d'un tableau d'origine qui satisfont à une condition donnée. Elle ne modifie pas le tableau d'origine, mais retourne un nouveau tableau contenant uniquement les éléments qui passent le test spécifié.
 
@@ -302,7 +302,7 @@ En résumé, la méthode `filter` en TypeScript est utilisée pour filtrer les �
 
 [Array.prototype.filter()](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
-# Liens utiles
+## Liens utiles
 
 [TypeScript Playground](https://www.typescriptlang.org/play/)
 
