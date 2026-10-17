@@ -3,9 +3,13 @@
 @source "../../../content/**/*";
 
 /*
- * Visual foundation of the "index" identity (P0).
+ * "Index" design system: tokens shared by the pages and by Nuxt UI.
+ * See docs/decisions.md (D24).
  *
- * Type scale (ratio 1.25): 12 · 14 · 16 · 20 · 25 · 31 · 39 · 48.
+ * Type scale (ratio 1.25), exposed as `text-*` utilities:
+ * caption 12 · small 14 · ui 16 · reading 18 · heading 20 · section 25 ·
+ * title 31 · display 39. New size names must also be registered for
+ * tailwind-merge in app.config.ts (`ui.tv`).
  * Fonts declared below are auto-loaded and optimized by @nuxt/fonts,
  * which Nuxt UI registers automatically: no config needed.
  */
@@ -14,12 +18,38 @@
   --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.4;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-ui: 1rem;
+  --text-ui--line-height: 1.5;
+  --text-reading: 1.125rem;
+  --text-reading--line-height: 1.7;
+  --text-heading: 1.25rem;
+  --text-heading--line-height: 1.3;
+  --text-section: 1.5625rem;
+  --text-section--line-height: 1.25;
+  --text-title: 1.953rem;
+  --text-title--line-height: 1.15;
+  --text-display: 2.441rem;
+  --text-display--line-height: 1.1;
+
+  /* Page and surfaces */
   --color-bg: #F7F8FA;
   --color-surface: #FFFFFF;
+  --color-sunken: #EEF0F3;
+  /* Text: headings, body, metadata, icons (faint is never for text to read) */
   --color-ink: #111418;
+  --color-body: #2A313B;
   --color-muted: #5B6472;
+  --color-faint: #8A93A1;
+  /* Borders */
   --color-line: #E3E7EC;
+  --color-line-strong: #CBD2DA;
+  /* Accent: links and focus; soft is the background of active items */
   --color-accent: #2B3AE0;
+  --color-accent-soft: #EEF0FF;
 
   --color-accent-50: #EEF0FF;
   --color-accent-100: #E0E4FF;
@@ -38,12 +68,17 @@
 .dark {
   --color-bg: #111418;
   --color-surface: #191D23;
+  --color-sunken: #0C0F13;
   --color-ink: #E9ECF2;
+  --color-body: #C9CFD8;
   --color-muted: #99A2B0;
+  --color-faint: #6B7482;
   --color-line: #262C35;
+  --color-line-strong: #363D48;
   /* Text and links on dark background (AA). Solid accent surfaces must use
      a scale step instead (e.g. bg-accent-500 with white text, also AA). */
   --color-accent: #7D8CFF;
+  --color-accent-soft: #1C2150;
 }
 
 /*
@@ -55,17 +90,19 @@
 :root,
 .dark {
   --ui-bg: var(--color-bg);
-  --ui-bg-muted: var(--color-bg);
+  --ui-bg-muted: var(--color-sunken);
   --ui-bg-elevated: var(--color-surface);
   --ui-bg-accented: var(--color-line);
-  --ui-text: var(--color-ink);
+  --ui-text: var(--color-body);
   --ui-text-highlighted: var(--color-ink);
+  --ui-text-toned: var(--color-body);
   --ui-text-muted: var(--color-muted);
-  --ui-text-toned: var(--color-muted);
-  --ui-text-dimmed: var(--color-muted);
+  --ui-text-dimmed: var(--color-faint);
   --ui-border: var(--color-line);
   --ui-border-muted: var(--color-line);
-  --ui-border-accented: var(--color-line);
+  --ui-border-accented: var(--color-line-strong);
+  /* Base radius: rounded-sm ≈ 6px (code, kbd), rounded-md ≈ 9px, rounded-lg ≈ 12px. */
+  --ui-radius: 0.375rem;
 }
 
 @layer base {
@@ -102,13 +139,17 @@
   }
 }
 
-/* Reading prose for note bodies (applied to the ContentRenderer container). */
+/*
+ * Reading container for note bodies (applied to the ContentRenderer wrapper).
+ * Element styles (headings, lists, code, tables…) live in app.config.ts
+ * under `ui.prose`: only the font, size, measure and color are set here.
+ */
 .prose-note {
   max-width: 68ch;
   font-family: var(--font-serif);
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--color-ink);
+  font-size: var(--text-reading);
+  line-height: var(--text-reading--line-height);
+  color: var(--color-body);
   overflow-wrap: break-word;
 }
 
@@ -118,149 +159,4 @@
 
 .prose-note > :last-child {
   margin-bottom: 0;
-}
-
-.prose-note p {
-  margin-bottom: 1.25em;
-}
-
-.prose-note h2,
-.prose-note h3,
-.prose-note h4 {
-  font-family: var(--font-serif);
-  line-height: 1.25;
-  color: var(--color-ink);
-  margin-top: 1.75em;
-  margin-bottom: 0.6em;
-}
-
-.prose-note h2 {
-  font-size: 31px;
-}
-
-.prose-note h3 {
-  font-size: 25px;
-}
-
-.prose-note h4 {
-  font-size: 20px;
-}
-
-.prose-note ul,
-.prose-note ol {
-  margin-bottom: 1.25em;
-  padding-left: 1.5em;
-}
-
-.prose-note ul {
-  list-style-type: disc;
-}
-
-.prose-note ol {
-  list-style-type: decimal;
-}
-
-.prose-note li {
-  margin-bottom: 0.375em;
-}
-
-.prose-note li::marker {
-  color: var(--color-muted);
-}
-
-.prose-note li > ul,
-.prose-note li > ol {
-  margin-top: 0.375em;
-  margin-bottom: 0;
-}
-
-.prose-note blockquote {
-  border-left: 3px solid var(--color-line);
-  color: var(--color-muted);
-  padding-left: 1em;
-  margin: 1.5em 0;
-}
-
-.prose-note blockquote > :last-child {
-  margin-bottom: 0;
-}
-
-.prose-note a {
-  color: var(--color-accent);
-  text-decoration: none;
-}
-
-.prose-note a:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
-
-/* Heading anchors (Nuxt UI wraps each heading in a link) keep the heading color. */
-.prose-note :is(h2, h3, h4) > a,
-.prose-note :is(h2, h3, h4) > a:hover {
-  color: inherit;
-  text-decoration: none;
-}
-
-.prose-note :not(pre) > code {
-  font-family: var(--font-mono);
-  font-size: 0.875em;
-  background-color: color-mix(in srgb, var(--color-muted) 12%, transparent);
-  border-radius: 4px;
-  padding: 0.125em 0.375em;
-}
-
-.prose-note pre {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  line-height: 1.6;
-  background-color: #F1F3F6;
-  border: 1px solid var(--color-line);
-  border-radius: 8px;
-  padding: 1rem 1.25rem;
-  overflow-x: auto;
-  margin: 1.5em 0;
-}
-
-.dark .prose-note pre {
-  background-color: var(--color-surface);
-}
-
-.prose-note pre code {
-  font-family: inherit;
-  font-size: inherit;
-  background-color: transparent;
-  padding: 0;
-}
-
-.prose-note table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 16px;
-  margin: 1.5em 0;
-}
-
-.prose-note thead th {
-  font-family: var(--font-sans);
-  font-weight: 600;
-  text-align: left;
-  border-bottom: 2px solid var(--color-line);
-  padding: 0.625em 0.75em;
-}
-
-.prose-note tbody td {
-  border-bottom: 1px solid var(--color-line);
-  padding: 0.625em 0.75em;
-}
-
-.prose-note hr {
-  border: 0;
-  border-top: 1px solid var(--color-line);
-  margin: 2em 0;
-}
-
-.prose-note img {
-  max-width: 100%;
-  border-radius: 8px;
 }

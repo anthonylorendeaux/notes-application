@@ -89,3 +89,13 @@ export function toNoteCards(rows: NoteRow[]): NoteCardData[] {
 export function rowCreated(row: Pick<NoteRow, 'created' | 'meta'>): string | Date | undefined {
   return (row.created ?? row.meta?.created) || undefined
 }
+
+// Reading time in minutes for the whole note body (about 220 words per
+// minute for technical French text), never less than one minute.
+export function readingMinutes(body: unknown): number | undefined {
+  const root = body as { type?: string, value?: unknown[] } | undefined
+  if (!root || root.type !== 'minimark' || !Array.isArray(root.value)) return undefined
+
+  const words = root.value.map(minimarkText).join(' ').split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.round(words / 220))
+}

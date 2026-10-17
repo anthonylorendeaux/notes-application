@@ -55,7 +55,7 @@ useSeoMeta({
 <template>
   <UContainer class="max-w-5xl">
     <header class="mb-12 md:mb-16">
-      <h1 class="font-sans text-[39px] font-bold leading-[1.1] text-ink md:text-5xl">
+      <h1 class="font-sans text-display font-bold text-ink md:text-5xl">
         Mes notes
       </h1>
 
@@ -74,7 +74,7 @@ useSeoMeta({
     >
       <h2
         id="latest-notes"
-        class="mb-4 font-sans text-[25px] font-semibold text-ink"
+        class="mb-4 font-sans text-section font-semibold text-ink"
       >
         Dernières notes
       </h2>
@@ -94,7 +94,7 @@ useSeoMeta({
     <section aria-labelledby="folders">
       <h2
         id="folders"
-        class="mb-4 font-sans text-[25px] font-semibold text-ink"
+        class="mb-4 font-sans text-section font-semibold text-ink"
       >
         Dossiers
       </h2>

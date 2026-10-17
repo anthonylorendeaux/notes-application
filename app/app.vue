@@ -32,6 +32,16 @@ const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSe
 
 provide(navigationKey, sectionNavigation)
 provide(fullNavigationKey, navigation)
+
+// Global shortcuts (⌘K is built into UContentSearch). Disabled while typing.
+const { open: searchOpen } = useContentSearch()
+const shortcutsOpen = ref(false)
+
+defineShortcuts({
+  '/': () => { searchOpen.value = true },
+  'g-h': () => navigateTo('/'),
+  '?': () => { shortcutsOpen.value = true }
+})
 </script>
 
 <template>
@@ -96,6 +106,8 @@ provide(fullNavigationKey, navigation)
         :files="files"
         :navigation="navigation"
       />
+
+      <ShortcutsHelp v-model:open="shortcutsOpen" />
     </ClientOnly>
   </UApp>
 </template>
