@@ -19,7 +19,7 @@ const folder = computed(() => {
 })
 
 if (!page.value && !folder.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page introuvable', fatal: true })
+  throw createError({ statusCode: 404, statusMessage: 'Page introuvable', message: 'Aucune note ni aucun dossier à cette adresse.', fatal: true })
 }
 
 // Previous/next note within the immediate folder only (queryCollectionItemSurroundings
@@ -97,12 +97,6 @@ const [{ data: surround }, { data: folderData }] = await Promise.all([surroundPr
 // nulls: queryCollectionItemSurroundings makes the same compromise.
 const surroundLinks = computed(() => surround.value as unknown as ContentNavigationItem[])
 
-const description = computed(() => {
-  if (page.value?.description) return page.value.description
-  if (folder.value) return `Notes et sous-dossiers du dossier « ${folder.value.title} ».`
-  return undefined
-})
-
 // The header repeats the description above the body: hide it when it only
 // duplicates the start of the first paragraph (a simple normalized-prefix
 // check; duplicated descriptions are cleaned up in the content itself).
@@ -129,11 +123,10 @@ const subFolders = computed(() => toFolderCards(folder.value?.children).map(card
 const breadcrumbItems = computed(() => buildBreadcrumbItems(fullNavigation?.value ?? navigation?.value ?? [], path))
 
 const pageCreated = computed(() => page.value ? formatNoteDate(rowCreated(page.value as NoteRow)) : undefined)
-const pageCategory = computed(() => page.value ? (page.value as NoteRow).category ?? (page.value as NoteRow).meta?.category : undefined)
 
 useSeoMeta({
   title: () => (page.value ?? folder.value)?.title,
-  description: () => description.value
+  description: () => page.value?.description
 })
 </script>
 
@@ -169,13 +162,6 @@ useSeoMeta({
         </template>
 
         <template #links>
-          <UBadge
-            v-if="pageCategory"
-            color="neutral"
-            variant="subtle"
-            :label="pageCategory"
-          />
-
           <UBadge
             v-if="pageCreated"
             color="neutral"
@@ -247,7 +233,6 @@ useSeoMeta({
 
       <UPageHeader
         :title="folder.title"
-        :description="description"
       >
         <template #headline>
           <UBreadcrumb :items="breadcrumbItems" />
@@ -281,6 +266,7 @@ useSeoMeta({
         <NoteGrid
           v-if="folderData?.notes?.length"
           :notes="folderData.notes"
+          hide-category
         />
       </UPageBody>
     </UPage>

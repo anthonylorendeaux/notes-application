@@ -82,7 +82,7 @@ Priorité : note réelle > index auto-généré > 404. Chaque racine de dossier 
 *À revoir si* les index doivent devenir éditables dans Studio.
 
 **D21 — Schéma de collection explicite, en-têtes de confidentialité (`noindex`, `no-referrer`) et fil d'Ariane sur les notes** (2026-10-17)
-`content.config.ts` déclare `created`, `category` et `tags` via Zod ; le site envoie `X-Robots-Tag: noindex, nofollow` et `Referrer-Policy: no-referrer` tant que la lecture reste publique (D16) ; chaque note affiche son fil d'Ariane, sa catégorie et sa date, avec un lien de retour « Tous les dossiers » dans la navigation latérale.
+`content.config.ts` déclare `created`, `category` et `tags` via Zod ; le site envoie `X-Robots-Tag: noindex, nofollow` et `Referrer-Policy: no-referrer` tant que la lecture reste publique (D16) ; chaque note affiche son fil d'Ariane et sa date (la catégorie, redondante avec le fil d'Ariane, est retirée le 2026-10-17), avec un lien de retour « Tous les dossiers » dans la navigation latérale.
 *À revoir si* le référencement public d'une partie des notes devient souhaité.
 
 **D22 — Épuration des notes d'archive sensibles** (2026-10-17)
