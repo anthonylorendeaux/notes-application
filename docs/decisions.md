@@ -93,6 +93,10 @@ Les rendus de pentest gardent la démarche mais plus les secrets de lab (hash NT
 Les dates d'import (1er janvier 2026) sont retirées : une note sans `created` n'affiche pas de date plutôt qu'une date inventée.
 *À revoir si* une date de dernière modification (git) devient utile.
 
+**D24 — Design system « Index » léger, sur Nuxt UI** (2026-10-17)
+L'identité existante est formalisée en tokens (`main.css` : couleurs, échelle typographique en utilitaires `text-*`, mapping des variables `--ui-*`, `--ui-radius`) et la typographie des notes passe par `ui.prose` dans `app.config.ts` ; `.prose-note` ne garde que le conteneur de lecture. Raccourcis clavier via `defineShortcuts` (aide sur `?`). Pas de bibliothèque de composants ni de dépendance : nuance le « design system maison » hors périmètre du brief.
+*À revoir si* une mise à jour de Nuxt UI casse la personnalisation `ui.prose`.
+
 ## Pistes écartées
 - **Docus** : dépendance à une couche, fonctions IA et endpoints publics à neutraliser.
 - **Template Docs de Nuxt UI** (écarté le 2026-10-12) : embarque `nuxt-llms` (llms.txt et llms-full.txt pré-rendus avec tout le contenu), un serveur MCP sur `/mcp` et une mise en page de documentation, à retirer ou à protéger.

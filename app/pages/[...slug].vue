@@ -124,6 +124,21 @@ const breadcrumbItems = computed(() => buildBreadcrumbItems(fullNavigation?.valu
 
 const pageCreated = computed(() => page.value ? formatNoteDate(rowCreated(page.value as NoteRow)) : undefined)
 
+const pageMeta = computed(() => {
+  if (!page.value) return undefined
+  const minutes = readingMinutes(page.value.body)
+  return [pageCreated.value, minutes && `${minutes} min de lecture`].filter(Boolean).join(' · ') || undefined
+})
+
+const editUrl = `/_studio?redirect=${encodeURIComponent(path)}`
+
+// Note shortcuts (see ShortcutsHelp): edit, next and previous note in the folder.
+defineShortcuts(computed(() => ({
+  e: page.value ? () => navigateTo(editUrl, { external: true }) : undefined,
+  n: surround.value?.[1] ? () => navigateTo(surround.value![1]!.path) : undefined,
+  p: surround.value?.[0] ? () => navigateTo(surround.value![0]!.path) : undefined
+})))
+
 useSeoMeta({
   title: () => (page.value ?? folder.value)?.title,
   description: () => page.value?.description
@@ -156,19 +171,19 @@ useSeoMeta({
       <UPageHeader
         :title="page.title"
         :description="headerDescription"
+        :ui="{ title: 'font-serif text-title font-medium sm:text-display' }"
       >
         <template #headline>
           <UBreadcrumb :items="breadcrumbItems" />
         </template>
 
         <template #links>
-          <UBadge
-            v-if="pageCreated"
-            color="neutral"
-            variant="subtle"
-            icon="i-lucide-calendar"
-            :label="pageCreated"
-          />
+          <span
+            v-if="pageMeta"
+            class="font-sans text-small text-muted tabular-nums"
+          >
+            {{ pageMeta }}
+          </span>
 
           <UButton
             icon="i-lucide-pencil"
@@ -176,10 +191,15 @@ useSeoMeta({
             variant="outline"
             size="sm"
             aria-label="Modifier"
-            :to="`/_studio?redirect=${encodeURIComponent(path)}`"
+            aria-keyshortcuts="E"
+            :to="editUrl"
             external
           >
             <span class="hidden sm:inline">Modifier</span>
+            <UKbd
+              value="E"
+              class="hidden sm:inline-flex"
+            />
           </UButton>
         </template>
       </UPageHeader>
