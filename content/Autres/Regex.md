@@ -5,7 +5,7 @@ category: Autres
 tags: [Fiche]
 ---
 
-# Anchors
+## Anchors
 
 - `^`: Start of string, or start of line in multi-line pattern
 - `\A`: Start of string
@@ -16,7 +16,7 @@ tags: [Fiche]
 - `\<`: Start of word
 - `\>`: End of word
 
-# Character Classes
+## Character Classes
 
 - `\c`: Control character
 - `\s`: White space
@@ -28,7 +28,7 @@ tags: [Fiche]
 - `\x`: Hexadecimal digit
 - `\O`: Octal digit
 
-# POSIX
+## POSIX
 
 - `[:upper:]`: Upper case letters
 - `[:lower:]`: Lower case letters
@@ -44,7 +44,7 @@ tags: [Fiche]
 - `[:print:]`: Printed characters and spaces
 - `[:word:]`: Digits, letters, and underscore
 
-# Assertions
+## Assertions
 
 - `?=`: Lookahead assertion
 - `?!`: Negative lookahead
@@ -55,7 +55,7 @@ tags: [Fiche]
 - `?()|`: Condition [if then else]
 - `?#`: Comment
 
-# Quantifiers
+## Quantifiers
 
 - `*`: 0 or more
 - `+`: 1 or more
@@ -65,19 +65,19 @@ tags: [Fiche]
 - `{3,5}`: 3, 4 or 5
 - Add a `?` to a quantifier to make it ungreedy
 
-# Escape Sequences
+## Escape Sequences
 
 - `\\`: Escape following character
 - `\Q`: Begin literal sequence
 - `\E`: End literal sequence
 - "Escaping" is a way of treating characters which have a special meaning in regular expressions literally, rather than as special characters.
 
-# Common Metacharacters
+## Common Metacharacters
 
 - `^`, `[`, `.`, `$`, `{`, `}`, `(`, `\\`, `+`, `)`, `|`, `?`, `<`, `>`, `-`
 - The escape character is usually `\`
 
-# Special Characters
+## Special Characters
 
 - `\n`: New line
 - `\r`: Carriage return
@@ -87,7 +87,7 @@ tags: [Fiche]
 - `\xxx`: Octal character xxx
 - `\xhh`: Hex character hh
 
-# Groups and Ranges
+## Groups and Ranges
 
 - `.`: Any character except new line (\n)
 - `(a|b)`: a or b
@@ -101,7 +101,7 @@ tags: [Fiche]
 - `\x`: Group/subpattern number "x"
 - Ranges are inclusive.
 
-# Pattern Modifiers
+## Pattern Modifiers
 
 - `g`: Global match
 - `i`: Case-insensitive
@@ -112,7 +112,7 @@ tags: [Fiche]
 - `U`: Ungreedy pattern
 - PCRE modifier
 
-# String Replacement
+## String Replacement
 
 - `$n`: nth non-passive group
 - `$2`: "xyz" in /^ (abc (xyz)) $/
@@ -123,6 +123,6 @@ tags: [Fiche]
 - `$&`: Entire matched string
 - Some regex implementations use `\` instead of `$`
 
-# Liens utiles
+## Liens utiles
 
 [regex101: build, test, and debug regex](https://regex101.com/)

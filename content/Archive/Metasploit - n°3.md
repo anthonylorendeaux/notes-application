@@ -5,14 +5,14 @@ tags: cyber
 created: 2026-01-01T23:24:00.000Z
 ---
 
-# Scan
+## Scan
 
-## Openvas
+### Openvas
 
-## nmap
+### nmap
 
 
-## Port 80 : Test HTTP dangerous methods
+### Port 80 : Test HTTP dangerous methods
 
 Cette faille correspond à des serveurs web mal configurés permettant à des clients distants d'exécuter des méthodes HTTP dangereuses telles que PUT et DELETE.
 
@@ -42,7 +42,7 @@ Ensuite on va setup un listener dans metasploit pour qu'il intercepte le reverse
 
 En lançant le script du côté du webserver, on obtient l'accès au shell du serveur et par la suite obtenir des infos sur le serveur metasploitable3.
 
-## Port 22 : SSH Brute Force Login With Default Credentials
+### Port 22 : SSH Brute Force Login With Default Credentials
 
 Dans cette faille, l'outil Hydra sera utilisé pour une attaque par force brute afin d'exploiter le service d'authentification à distance SSH. Une liste de mots sera utilisée pour le nom d'utilisateur et le mot de passe séparément.
 
@@ -57,7 +57,7 @@ Le pirate peut profiter de plusieurs comptes d'utilisateurs qui ont des mots de 
 
 Le mot de passe du compte Administrateur est obtenu, et en obtenant ce mot de passe, n'importe quelle personne mal intentionnée peut faire n'importe quoi sur le système. Une personne mal intentionnée peut faire n'importe quoi sur le système.
 
-## Port 23 : ProFTPD 1.3.5 "mod_copy"
+### Port 23 : ProFTPD 1.3.5 "mod_copy"
 
 ProFTPD est sujet à une vulnérabilité de copies de fichiers non authentifiée. La cible s'est avérée être vulnérable.
 
@@ -74,7 +74,7 @@ On s'aperçoit que l'exploit a bien fonctionné puisque cela a permis d'obtenir 
 
 Pour conclure, il est important de mettre à jour vers une version de ProFTPD qui n'est pas affectée par cette vulnérabilité afin de sécuriser votre système.
 
-## Exploit SQL Injection et Brute Force (payroll_app)
+### Exploit SQL Injection et Brute Force (payroll_app)
 
 On peut voir grâce au scan openvas que l'application `payroll_app` pourrait être susceptible de subir une injection SQL donc nous avons testé d'ajouter la chaîne `' OR 1=1#` pour consulter la liste des utilisateurs.
 

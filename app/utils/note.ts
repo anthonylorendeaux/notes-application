@@ -1,10 +1,12 @@
-// Raw query rows: the collection has no schema, custom frontmatter
-// fields live in the `meta` JSON column.
+// Raw query rows: with the collection schema, custom frontmatter
+// fields are top-level columns, falling back to `meta` without schema.
 export interface NoteRow {
   path: string
   title: string
   description?: string | null
   body?: unknown
+  created?: string | Date | null
+  category?: string | null
   meta?: {
     created?: string | Date
     category?: string
@@ -79,7 +81,11 @@ export function toNoteCards(rows: NoteRow[]): NoteCardData[] {
     path: row.path,
     title: row.title,
     description: row.description || noteExcerpt(row.body),
-    created: row.meta?.created,
-    category: row.meta?.category
+    created: (row.created ?? row.meta?.created) || undefined,
+    category: (row.category ?? row.meta?.category) || undefined
   }))
+}
+
+export function rowCreated(row: Pick<NoteRow, 'created' | 'meta'>): string | Date | undefined {
+  return (row.created ?? row.meta?.created) || undefined
 }

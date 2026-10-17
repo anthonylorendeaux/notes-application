@@ -1,42 +1,50 @@
 <script setup lang="ts">
-import type { ContentNavigationItem } from '@nuxt/content'
 import type { NoteRow } from '~/utils/note'
+import { navigationKey } from '~/utils/folder'
 
-const navigation = inject<Ref<ContentNavigationItem[] | undefined>>('navigation')
+const navigation = inject(navigationKey)
 
-// Every note row, fetched once: the latest notes, the total count and the
-// per-folder dates below all derive from it.
-const { data: allNotes } = await useAsyncData('home-notes', async () => {
+// Every note row, fetched once: only the 3 latest notes parse their body AST,
+// while the total count and per-folder dates are computed before dropping rows.
+const { data: homeData } = await useAsyncData('home-notes', async () => {
   const rows = await queryCollection('notes')
-    .select('path', 'title', 'description', 'body', 'meta')
+    .select('path', 'title', 'description', 'body', 'created', 'category', 'meta')
     .all() as NoteRow[]
 
-  return toNoteCards(rows)
-})
-
-const notes = computed(() => allNotes.value ?? [])
-
-const recentNotes = computed(() =>
-  [...notes.value]
-    .sort((a, b) => noteTimestamp(b.created) - noteTimestamp(a.created))
-    .slice(0, 3)
-)
-
-const folders = computed(() => {
-  const latestByFolder = new Map<string, number>()
-  for (const note of notes.value) {
-    const [segment] = note.path.split('/').filter(Boolean)
+  const latestByFolder: Record<string, string> = {}
+  const maxByFolder = new Map<string, number>()
+  for (const row of rows) {
+    const [segment] = row.path.split('/').filter(Boolean)
     if (!segment) continue
     const key = `/${segment}`
-    const timestamp = noteTimestamp(note.created)
-    if (timestamp > (latestByFolder.get(key) ?? 0)) latestByFolder.set(key, timestamp)
+    const timestamp = noteTimestamp(rowCreated(row))
+    if (timestamp > (maxByFolder.get(key) ?? 0)) maxByFolder.set(key, timestamp)
+  }
+  for (const [key, timestamp] of maxByFolder) {
+    const formatted = formatNoteDate(timestamp)
+    if (formatted) latestByFolder[key] = formatted
   }
 
-  return toFolderCards(navigation?.value).map(folder => ({
-    ...folder,
-    latest: formatNoteDate(latestByFolder.get(folder.path) ?? 0)
-  }))
+  const latestRows = [...rows]
+    .sort((a, b) => noteTimestamp(rowCreated(b)) - noteTimestamp(rowCreated(a)))
+    .slice(0, 3)
+
+  return {
+    recentNotes: toNoteCards(latestRows),
+    totalCount: rows.length,
+    latestByFolder
+  }
 })
+
+const recentNotes = computed(() => homeData.value?.recentNotes ?? [])
+const totalCount = computed(() => homeData.value?.totalCount ?? 0)
+
+const folders = computed(() =>
+  toFolderCards(navigation?.value).map(folder => ({
+    ...folder,
+    latest: homeData.value?.latestByFolder[folder.path]
+  }))
+)
 
 useSeoMeta({
   title: 'Mes notes',
@@ -56,7 +64,7 @@ useSeoMeta({
       </p>
 
       <p class="mt-2 text-sm text-muted">
-        {{ formatNoteCount(notes.length) }}
+        {{ formatNoteCount(totalCount) }}
       </p>
     </header>
 

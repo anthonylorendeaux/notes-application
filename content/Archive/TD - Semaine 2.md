@@ -5,9 +5,9 @@ tags: cyber
 created: 2026-01-01T23:24:00.000Z
 ---
 
-# Sommaire
+## Sommaire
 
-# 1. Contexte
+## 1. Contexte
 
 A présent, nous avons à notre disposition trois machines virtuelles, un Windows Server 2016, une Windows 10, et enfin un kali linux.
 
@@ -15,7 +15,7 @@ La première héberge un annuaire Active Directory avec un contrôleur de domain
 
 Le but final est d'arriver à prendre le contrôle du profil administrateur de l'Active Directory sur la machine Windows Serveur 2016. Néanmoins pour arriver à ce résultat il faudra d'abord arriver à compromettre physiquement la machine utilisateur à l'aide d'un ISO contenant un programme malveillant sur clé USB.
 
-# 2. Introduction
+## 2. Introduction
 
 Au fil de ce document il vous sera exposé l'ensemble de nos pistes de réflexions et de nos actions nous ayant permis d'accéder au profil administrateur de l'Active Directory hébergé sur la machine virtuelle Windows Server 2016.
 

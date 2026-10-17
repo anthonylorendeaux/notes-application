@@ -5,7 +5,7 @@ tags: Fiche
 created: 2026-03-24T20:45:00.000Z
 ---
 
-# Introduction
+## Introduction
 
 Le **prompt engineering** pour les devs et DevOps, c'est l'art de formuler ses demandes à un LLM (Claude, GPT-4, etc.) pour obtenir du code, des configs, des diagnostics ou des automatisations de qualité **production** — pas juste des exemples qui marchent dans le vide.
 
@@ -13,7 +13,7 @@ Un bon prompt en contexte technique = **rôle + contexte + contraintes + format 
 
 ---
 
-# 1. La structure de base — le framework RCCF
+## 1. La structure de base — le framework RCCF
 
 ```
 R — Rôle     : Qui est Claude dans ce contexte ?
@@ -22,13 +22,13 @@ C — Contraintes : Ce qu'il ne faut PAS faire
 F — Format   : Quel type de sortie tu attends
 ```
 
-## Exemple sans RCCF (mauvais prompt)
+### Exemple sans RCCF (mauvais prompt)
 
 ```
 Fais moi un Dockerfile
 ```
 
-## Exemple avec RCCF (bon prompt)
+### Exemple avec RCCF (bon prompt)
 
 ```
 Tu es un DevOps senior spécialisé en conteneurisation.
@@ -48,11 +48,11 @@ Génère le Dockerfile optimisé avec des commentaires sur chaque étape.
 
 ---
 
-# 2. Donner le rôle — System Prompt / Persona
+## 2. Donner le rôle — System Prompt / Persona
 
 Donner un rôle à Claude change radicalement la qualité des réponses techniques.
 
-## Rôles utiles par domaine
+### Rôles utiles par domaine
 
 | Domaine | Rôle à donner |
 | --- | --- |
@@ -65,9 +65,9 @@ Donner un rôle à Claude change radicalement la qualité des réponses techniqu
 
 ---
 
-# 3. Techniques avancées
+## 3. Techniques avancées
 
-## 3.1 Chain of Thought — forcer le raisonnement étape par étape
+### 3.1 Chain of Thought — forcer le raisonnement étape par étape
 
 Ajoute **"Raisonne étape par étape"** ou **"Think step by step"** pour les problèmes complexes.
 
@@ -83,7 +83,7 @@ Raisonne étape par étape :
 
 > Particulièrement efficace pour le debugging et les décisions d'architecture.
 
-## 3.2 Few-Shot — donner des exemples pour calibrer le style
+### 3.2 Few-Shot — donner des exemples pour calibrer le style
 
 Montre un exemple de ce que tu veux AVANT de poser ta question.
 
@@ -99,7 +99,7 @@ ce format de nommage :
 [coller le service]
 ```
 
-## 3.3 Contraintes négatives — dire ce qu'on ne veut PAS
+### 3.3 Contraintes négatives — dire ce qu'on ne veut PAS
 
 Extrêmement efficace pour éviter les mauvaises pratiques.
 
@@ -115,7 +115,7 @@ Ne pas :
 [coller le composant]
 ```
 
-## 3.4 Demander plusieurs options — forcer le trade-off
+### 3.4 Demander plusieurs options — forcer le trade-off
 
 ```
 Propose 3 approches pour gérer le cache dans cette API NestJS.
@@ -129,7 +129,7 @@ Ensuite recommande celle qui convient le mieux à notre contexte :
 [décrire le contexte]
 ```
 
-## 3.5 Itération par contrainte — affiner progressivement
+### 3.5 Itération par contrainte — affiner progressivement
 
 Ne pas tout demander d'un coup. Construire par couches.
 
@@ -149,9 +149,9 @@ Ne pas tout demander d'un coup. Construire par couches.
 
 ---
 
-# 4. Prompts spécifiques Dev
+## 4. Prompts spécifiques Dev
 
-## Générer du code avec contraintes de qualité
+### Générer du code avec contraintes de qualité
 
 ```
 Tu es un dev Angular senior.
@@ -169,7 +169,7 @@ Exigences de qualité :
 - Destructor pour les subscriptions
 ```
 
-## Debug d'une erreur
+### Debug d'une erreur
 
 ```
 Voici l'erreur que j'obtiens :
@@ -185,7 +185,7 @@ Identifie la cause racine (pas juste les symptômes)
 et propose le fix minimal.
 ```
 
-## Revue de code ciblée
+### Revue de code ciblée
 
 ```
 Fais une revue de ce code en tant que lead dev senior.
@@ -200,7 +200,7 @@ Ne commente PAS le style ou le formatage (c'est géré par le linter).
 [coller le code]
 ```
 
-## Architecture — demander une décision
+### Architecture — demander une décision
 
 ```
 Contexte : API NestJS avec 50k requêtes/jour, PostgreSQL.
@@ -219,9 +219,9 @@ Réponds en mode architecte, pas en mode tutorial.
 
 ---
 
-# 5. Prompts spécifiques DevOps
+## 5. Prompts spécifiques DevOps
 
-## Générer une config CI/CD
+### Générer une config CI/CD
 
 ```
 Tu es un ingénieur DevOps senior.
@@ -239,7 +239,7 @@ Contraintes :
 - Timeout de 10 min max par job
 ```
 
-## Analyser des logs en prod
+### Analyser des logs en prod
 
 ```
 Voici les logs Nginx des dernières 24h lors de l'incident :
@@ -251,7 +251,7 @@ Analyse :
 3. Quelles métriques surveiller pour détecter ça plus tôt ?
 ```
 
-## Hardening sécurité
+### Hardening sécurité
 
 ```
 Tu es un expert sécurité DevSecOps.
@@ -268,7 +268,7 @@ Audit ce docker-compose.yml en chercher :
 Pour chaque problème trouvé : niveau de criticité + fix concret.
 ```
 
-## Optimisation d'une requête SQL
+### Optimisation d'une requête SQL
 
 ```
 Cette requête PostgreSQL prend 3 secondes sur 2M de lignes :
@@ -285,7 +285,7 @@ Propose les optimisations par ordre de priorité :
 
 ---
 
-# 6. Anti-patterns à éviter
+## 6. Anti-patterns à éviter
 
 | ❌ Anti-pattern | ✅ �� faire à la place |
 | --- | --- |
@@ -298,7 +298,7 @@ Propose les optimisations par ordre de priorité :
 
 ---
 
-# 7. Template universel — Dev/DevOps
+## 7. Template universel — Dev/DevOps
 
 Copier-coller et adapter pour n'importe quelle tâche :
 
@@ -324,7 +324,7 @@ Tu es [rôle précis + niveau d'expertise].
 
 ---
 
-# Résumé — règles d'or
+## Résumé — règles d'or
 
 - **Plus tu donnes de contexte, meilleur est le résultat** — la stack, les versions, les contraintes
 - **Donne un rôle** — un "expert sécurité" ne répond pas comme un "dev junior"

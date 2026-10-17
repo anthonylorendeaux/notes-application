@@ -49,8 +49,8 @@ On garde le `packageManager: pnpm@12.11.2` du Starter plutôt que de le rabaisse
 `experimental.sqliteConnector: 'native'` (`node:sqlite`) plutôt que `better-sqlite3`, pour éviter une dépendance native à compiler.
 *À revoir si* Vercel ou Nuxt Content cassent ce mode expérimental.
 
-**D13 — Titres standard de Nuxt Content, sans hook, contenu normalisé** (2026-10-14, normalisation le 2026-10-15, remplace la version du 2026-10-12)
-Plus de hook `content:file:afterParse` : rien n'est muté au parse. Le titre vient du frontmatter, sinon du nom de fichier en pascalCase ; pas de description automatique. Contenu normalisé le 2026-10-15 : chaque note porte `title` dans son frontmatter et le H1 de tête a été retiré là où il dupliquait le titre (plus de titre affiché deux fois). Convention pour les notes à venir : `title:` obligatoire, pas de H1 en tête.
+**D13 — Titres standard de Nuxt Content, sans hook, contenu normalisé** (2026-10-14, normalisation les 2026-10-15 et 2026-10-17, remplace la version du 2026-10-12)
+Plus de hook `content:file:afterParse` : rien n'est muté au parse. Le titre vient du frontmatter, sinon du nom de fichier en pascalCase ; pas de description automatique. Contenu normalisé le 2026-10-15 puis le 2026-10-17 : chaque note porte `title` dans son frontmatter, aucun H1 (`#`) dans le corps (sections à partir de `##` pour l'accessibilité et la table des matières `UContentToc`). Convention pour les notes à venir : `title:` obligatoire, pas de H1 dans le corps.
 *À revoir si* un besoin réel de titre « nom de fichier tel quel » apparaît.
 
 **D14 — Recherche via `UContentSearch`, sections chargées côté client uniquement** (2026-10-12)
@@ -80,6 +80,10 @@ L'aside et le drawer du header n'affichent que la catégorie courante (arboresce
 **D20 — Index auto-généré par dossier** (2026-10-14, précisé le 2026-10-15)
 Priorité : note réelle > index auto-généré > 404. Chaque racine de dossier (`/frontend`, `/backend/java`, …) affiche une page listant ses notes directes et ses sous-dossiers, construite depuis l'arborescence de navigation — aucun fichier de contenu ajouté. Précisé le 2026-10-15 : l'index auto-généré couvre aussi la racine (`/`, titre « Accueil »), et les notes-index rédigées (MOC de dossier et page d'accueil) ont été supprimées comme redondantes ; les notes à contenu réel (ex. `Backend/Java/Java.md`) restent des notes ordinaires.
 *À revoir si* les index doivent devenir éditables dans Studio.
+
+**D21 — Schéma de collection explicite, en-têtes de confidentialité (`noindex`, `no-referrer`) et fil d'Ariane sur les notes** (2026-10-17)
+`content.config.ts` déclare `created`, `category` et `tags` via Zod ; le site envoie `X-Robots-Tag: noindex, nofollow` et `Referrer-Policy: no-referrer` tant que la lecture reste publique (D16) ; chaque note affiche son fil d'Ariane, sa catégorie et sa date, avec un lien de retour « Tous les dossiers » dans la navigation latérale.
+*À revoir si* le référencement public d'une partie des notes devient souhaité.
 
 ## Pistes écartées
 - **Docus** : dépendance à une couche, fonctions IA et endpoints publics à neutraliser.

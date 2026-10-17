@@ -19,6 +19,17 @@ export default defineNuxtConfig({
     }
   },
 
+  routeRules: {
+    '/**': {
+      headers: {
+        'X-Robots-Tag': 'noindex, nofollow',
+        'Referrer-Policy': 'no-referrer',
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'SAMEORIGIN'
+      }
+    }
+  },
+
   compatibilityDate: '2026-06-30',
 
   eslint: {

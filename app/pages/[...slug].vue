@@ -1,27 +1,21 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content'
 import type { NoteRow } from '~/utils/note'
+import { fullNavigationKey, navigationKey } from '~/utils/folder'
 
 const route = useRoute()
-const navigation = inject<Ref<ContentNavigationItem[] | undefined>>('navigation')
+const navigation = inject(navigationKey)
+const fullNavigation = inject(fullNavigationKey)
 
 // Trailing slashes would break every path lookup below.
 const path = route.path.replace(/\/+$/, '') || '/'
 
-const { data: page } = await useAsyncData(path, () => queryCollection('notes').path(path).first())
+const { data: page } = await useAsyncData(`note:${path}`, () => queryCollection('notes').path(path).first())
 
 // No note at this path: fall back to a folder index built from the navigation tree, else 404.
-function findFolderNode(nodes: ContentNavigationItem[], path: string): ContentNavigationItem | undefined {
-  for (const node of nodes) {
-    if (node.path === path) return node
-    const child = node.children && findFolderNode(node.children, path)
-    if (child) return child
-  }
-}
-
 const folder = computed(() => {
   if (page.value) return undefined
-  return findFolderNode(navigation?.value ?? [], path)
+  return findFolderNode(fullNavigation?.value ?? navigation?.value ?? [], path)
 })
 
 if (!page.value && !folder.value) {
@@ -30,9 +24,9 @@ if (!page.value && !folder.value) {
 
 // Previous/next note within the immediate folder only (queryCollectionItemSurroundings
 // cannot filter by folder: it flattens the whole collection).
-const { data: surround } = await useAsyncData(`${path}-surround`, async (): Promise<[ContentNavigationItem | null, ContentNavigationItem | null]> => {
+const surroundPromise = useAsyncData(`surround:${path}`, async (): Promise<[ContentNavigationItem | null, ContentNavigationItem | null]> => {
   // Folder index pages have no previous/next note.
-  if (folder.value) {
+  if (!page.value) {
     return [null, null]
   }
 
@@ -59,6 +53,45 @@ const { data: surround } = await useAsyncData(`${path}-surround`, async (): Prom
 
   return [siblings[index - 1] ?? null, siblings[index + 1] ?? null]
 })
+
+// Folder index cards need note metadata (date, category, excerpt) and the
+// header shows stats computed over every descendant note.
+const folderPromise = useAsyncData(`folder:${path}`, async () => {
+  if (!folder.value) return null
+
+  const prefix = `${folder.value.path}/`
+
+  // LIKE is only a prefilter ('_' and '%' are wildcards in slugs):
+  // the real folder check happens on exact path segments below.
+  const rows = await queryCollection('notes')
+    .where('path', 'LIKE', `${prefix}%`)
+    .order('stem', 'ASC')
+    .select('path', 'title', 'description', 'body', 'created', 'category', 'meta')
+    .all() as NoteRow[]
+
+  // Immediate children only: deeper rows belong to sub-folder indexes.
+  const notes = rows.filter(row => !row.path.slice(prefix.length).includes('/'))
+
+  const latestTimestamp = rows.reduce((max, row) => Math.max(max, noteTimestamp(rowCreated(row))), 0)
+
+  // Latest note date per immediate sub-folder, for the folder cards below.
+  // Rows hold every descendant: a row belongs to a child when it is the
+  // child note itself or lives under its path.
+  const latestByFolder: Record<string, string> = {}
+  for (const child of folder.value.children ?? []) {
+    if (!isFolderNode(child)) continue
+    const childPrefix = `${child.path}/`
+    const childLatest = rows.reduce((max, row) => row.path === child.path || row.path.startsWith(childPrefix)
+      ? Math.max(max, noteTimestamp(rowCreated(row)))
+      : max, 0)
+    const formatted = formatNoteDate(childLatest)
+    if (formatted) latestByFolder[child.path] = formatted
+  }
+
+  return { notes: toNoteCards(notes), count: rows.length, latest: formatNoteDate(latestTimestamp), latestByFolder }
+})
+
+const [{ data: surround }, { data: folderData }] = await Promise.all([surroundPromise, folderPromise])
 
 // UContentSurround hides a missing side, but its prop type does not admit
 // nulls: queryCollectionItemSurroundings makes the same compromise.
@@ -88,71 +121,19 @@ const headerDescription = computed(() => {
   return raw
 })
 
-// Folder index cards need note metadata (date, category, excerpt) and the
-// header shows stats computed over every descendant note.
-const { data: folderData } = await useAsyncData(`${path}-index`, async () => {
-  if (!folder.value) return null
-
-  const prefix = `${folder.value.path}/`
-
-  // LIKE is only a prefilter ('_' and '%' are wildcards in slugs):
-  // the real folder check happens on exact path segments below.
-  const rows = await queryCollection('notes')
-    .where('path', 'LIKE', `${prefix}%`)
-    .order('stem', 'ASC')
-    .select('path', 'title', 'description', 'body', 'meta')
-    .all() as NoteRow[]
-
-  // Immediate children only: deeper rows belong to sub-folder indexes.
-  const notes = rows.filter(row => !row.path.slice(prefix.length).includes('/'))
-
-  const latestTimestamp = rows.reduce((max, row) => Math.max(max, noteTimestamp(row.meta?.created)), 0)
-
-  // Latest note date per immediate sub-folder, for the folder cards below.
-  // Rows hold every descendant: a row belongs to a child when it is the
-  // child note itself or lives under its path.
-  const latestByFolder: Record<string, string> = {}
-  for (const child of folder.value.children ?? []) {
-    if (!isFolderNode(child)) continue
-    const childPrefix = `${child.path}/`
-    const childLatest = rows.reduce((max, row) => row.path === child.path || row.path.startsWith(childPrefix)
-      ? Math.max(max, noteTimestamp(row.meta?.created))
-      : max, 0)
-    const formatted = formatNoteDate(childLatest)
-    if (formatted) latestByFolder[child.path] = formatted
-  }
-
-  return { notes: toNoteCards(notes), count: rows.length, latest: formatNoteDate(latestTimestamp), latestByFolder }
-})
-
 const subFolders = computed(() => toFolderCards(folder.value?.children).map(card => ({
   ...card,
   latest: folderData.value?.latestByFolder[card.path]
 })))
 
-const breadcrumbItems = computed(() => {
-  if (!folder.value) return []
+const breadcrumbItems = computed(() => buildBreadcrumbItems(fullNavigation?.value ?? navigation?.value ?? [], path))
 
-  const items: { label: string, to?: string }[] = [{ label: 'Accueil', to: '/' }]
-  const segments = folder.value.path.split('/').filter(Boolean)
-  let nodes = navigation?.value ?? []
-  let current = ''
-
-  segments.forEach((segment, index) => {
-    current += `/${segment}`
-    const node = findFolderNode(nodes, current)
-    // The current page is the last crumb and is not a link.
-    const isLast = index === segments.length - 1
-    items.push({ label: node?.title ?? segment, to: isLast ? undefined : current })
-    nodes = node?.children ?? []
-  })
-
-  return items
-})
+const pageCreated = computed(() => page.value ? formatNoteDate(rowCreated(page.value as NoteRow)) : undefined)
+const pageCategory = computed(() => page.value ? (page.value as NoteRow).category ?? (page.value as NoteRow).meta?.category : undefined)
 
 useSeoMeta({
-  title: (page.value ?? folder.value)?.title,
-  description: description.value
+  title: () => (page.value ?? folder.value)?.title,
+  description: () => description.value
 })
 </script>
 
@@ -163,6 +144,15 @@ useSeoMeta({
 
       <template #left>
         <UPageAside>
+          <UButton
+            to="/"
+            icon="i-lucide-arrow-left"
+            label="Tous les dossiers"
+            color="neutral"
+            variant="link"
+            class="mb-2 px-0 font-sans"
+          />
+
           <UContentNavigation
             :navigation="navigation"
             highlight
@@ -174,7 +164,26 @@ useSeoMeta({
         :title="page.title"
         :description="headerDescription"
       >
+        <template #headline>
+          <UBreadcrumb :items="breadcrumbItems" />
+        </template>
+
         <template #links>
+          <UBadge
+            v-if="pageCategory"
+            color="neutral"
+            variant="subtle"
+            :label="pageCategory"
+          />
+
+          <UBadge
+            v-if="pageCreated"
+            color="neutral"
+            variant="subtle"
+            icon="i-lucide-calendar"
+            :label="pageCreated"
+          />
+
           <UButton
             icon="i-lucide-pencil"
             color="neutral"
@@ -220,6 +229,15 @@ useSeoMeta({
     <UPage v-else-if="folder">
       <template #left>
         <UPageAside>
+          <UButton
+            to="/"
+            icon="i-lucide-arrow-left"
+            label="Tous les dossiers"
+            color="neutral"
+            variant="link"
+            class="mb-2 px-0 font-sans"
+          />
+
           <UContentNavigation
             :navigation="navigation"
             highlight
@@ -260,7 +278,10 @@ useSeoMeta({
           class="mb-8"
         />
 
-        <NoteGrid :notes="folderData?.notes ?? []" />
+        <NoteGrid
+          v-if="folderData?.notes?.length"
+          :notes="folderData.notes"
+        />
       </UPageBody>
     </UPage>
   </UContainer>

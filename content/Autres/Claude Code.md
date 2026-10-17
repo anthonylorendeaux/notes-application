@@ -9,35 +9,35 @@ created: 2026-03-24T20:14:00.000Z
 
 ---
 
-# Installation
+## Installation
 
-## Prérequis
+### Prérequis
 
 - Node.js **18+**
 - npm ou npx disponible
 - Un compte Anthropic avec accès à Claude Code
 
-## Installation globale
+### Installation globale
 
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
 
-## Lancement sans installation (npx)
+### Lancement sans installation (npx)
 
 ```bash
 npx @anthropic-ai/claude-code
 ```
 
-## Authentification
+### Authentification
 
 Au premier lancement, Claude Code ouvre un navigateur pour s'authentifier via [**claude.ai**](http://claude.ai). Aucune clé API n'est nécessaire manuellement.
 
 ---
 
-# Utilisation de base
+## Utilisation de base
 
-## Démarrer une session interactive
+### Démarrer une session interactive
 
 ```bash
 claude
@@ -45,13 +45,13 @@ claude
 
 Cela ouvre un REPL dans le terminal où tu peux donner des instructions en langage naturel.
 
-## Exécuter une commande directe (mode one-shot)
+### Exécuter une commande directe (mode one-shot)
 
 ```bash
 claude -p "Explique ce que fait ce fichier" src/app.ts
 ```
 
-## Passer du contexte via stdin
+### Passer du contexte via stdin
 
 ```bash
 cat fichier.ts | claude -p "Refactorise ce code"
@@ -59,9 +59,9 @@ cat fichier.ts | claude -p "Refactorise ce code"
 
 ---
 
-# Capacités principales
+## Capacités principales
 
-## Ce que Claude Code peut faire
+### Ce que Claude Code peut faire
 
 - **Lire et modifier** des fichiers du projet
 - **Créer** de nouveaux fichiers et composants
@@ -71,7 +71,7 @@ cat fichier.ts | claude -p "Refactorise ce code"
 - **Écrire des tests** et les exécuter
 - **Faire des recherches** dans la codebase avec grep/find
 
-## Ce qu'il ne fait pas automatiquement
+### Ce qu'il ne fait pas automatiquement
 
 - Il demande confirmation avant des actions destructives
 - Il ne commit pas sans ton accord
@@ -79,7 +79,7 @@ cat fichier.ts | claude -p "Refactorise ce code"
 
 ---
 
-# Commandes utiles dans la session interactive
+## Commandes utiles dans la session interactive
 
 | Commande | Description |
 | --- | --- |
@@ -92,11 +92,11 @@ cat fichier.ts | claude -p "Refactorise ce code"
 
 ---
 
-# Fichier CLAUDE.md
+## Fichier CLAUDE.md
 
 Le fichier `CLAUDE.md` à la racine du projet est **automatiquement lu** par Claude Code à chaque session. Il permet de donner du contexte persistant.
 
-## Exemple de CLAUDE.md
+### Exemple de CLAUDE.md
 
 ```markdown
 # Contexte du projet
@@ -120,11 +120,11 @@ Application Angular avec une API NestJS.
 
 ---
 
-# Intégration MCP (Model Context Protocol)
+## Intégration MCP (Model Context Protocol)
 
 Claude Code supporte les **serveurs MCP** pour étendre ses capacités avec des outils externes.
 
-## Configuration dans ~/.claude/config.json
+### Configuration dans ~/.claude/config.json
 
 ```json
 {
@@ -137,7 +137,7 @@ Claude Code supporte les **serveurs MCP** pour étendre ses capacités avec des 
 }
 ```
 
-## Exemples de serveurs MCP utiles
+### Exemples de serveurs MCP utiles
 
 - **@modelcontextprotocol/server-filesystem** : accès fichiers étendu
 - **@modelcontextprotocol/server-github** : interaction GitHub
@@ -145,15 +145,15 @@ Claude Code supporte les **serveurs MCP** pour étendre ses capacités avec des 
 
 ---
 
-# Bonnes pratiques
+## Bonnes pratiques
 
-## Donner un contexte précis
+### Donner un contexte précis
 
 Plutôt que : *"Fixe le bug"*
 
 Préférer : *"Le composant UserList plante au chargement avec l'erreur NG0100, voici le code concerné"*
 
-## Travailler par étapes
+### Travailler par étapes
 
 Décomposer les grandes tâches en sous-tâches pour garder le contrôle :
 
@@ -163,17 +163,17 @@ Décomposer les grandes tâches en sous-tâches pour garder le contrôle :
 3. "Écris les tests unitaires pour AuthService"
 ```
 
-## Vérifier avant de valider
+### Vérifier avant de valider
 
 Claude Code proponera les modifications. Toujours relire avant d'accepter, surtout pour les suppressions.
 
-## Utiliser /compact régulièrement
+### Utiliser /compact régulièrement
 
 Sur des sessions longues, `/compact` réduit l'usage de tokens tout en gardant le contexte essentiel.
 
 ---
 
-# Raccourcis clavier
+## Raccourcis clavier
 
 | Raccourci | Action |
 | --- | --- |
@@ -184,27 +184,27 @@ Sur des sessions longues, `/compact` réduit l'usage de tokens tout en gardant l
 
 ---
 
-# Cas d'usage concrets
+## Cas d'usage concrets
 
-## Générer un composant Angular complet
+### Générer un composant Angular complet
 
 ```
 claude -p "Crée un composant Angular standalone 'user-card' avec un @Input() user: User, un design avec Tailwind, et son fichier de test Jest"
 ```
 
-## Déboguer une erreur
+### Déboguer une erreur
 
 ```
 cat error.log | claude -p "Analyse cette erreur et propose un fix"
 ```
 
-## Refactoriser un fichier
+### Refactoriser un fichier
 
 ```
 claude -p "Refactorise src/services/auth.service.ts pour utiliser les signaux Angular au lieu des BehaviorSubject"
 ```
 
-## Générer des tests
+### Générer des tests
 
 ```
 claude -p "Écris les tests Jest pour tous les services dans src/app/services/"
@@ -216,11 +216,11 @@ claude -p "Écris les tests Jest pour tous les services dans src/app/services/"
 
 ---
 
-# CLAUDE.md — Programmer le comportement de l'agent
+## CLAUDE.md — Programmer le comportement de l'agent
 
 Le fichier `CLAUDE.md` est **automatiquement lu à chaque session** par Claude Code. Il te permet de briefer l'agent une fois pour toutes — contexte projet, conventions, et règles de comportement.
 
-## Emplacement
+### Emplacement
 
 ```
 mon-projet/
@@ -233,7 +233,7 @@ Tu peux aussi créer `~/.claude/CLAUDE.md` pour une config **globale** à tous t
 
 ---
 
-# Working Principles
+## Working Principles
 
 Le niveau **agent engineering** : tu programmes le comportement de l'agent, pas seulement son contexte.
 
@@ -266,7 +266,7 @@ Le niveau **agent engineering** : tu programmes le comportement de l'agent, pas 
 
 ---
 
-# Skills
+## Skills
 
 Un **skill** est un fichier Markdown décrivant une procédure précise. Tu le références depuis `CLAUDE.md` avec `@`.
 
@@ -291,7 +291,7 @@ Exemple de `docs/skills/angular-component.md` :
 
 ---
 
-# Sous-agents
+## Sous-agents
 
 Claude Code supporte le **multi-agent** : un orchestrateur peut lancer des sous-agents en parallèle.
 
@@ -319,7 +319,7 @@ Claude (orchestrateur) :
 
 ---
 
-# CLAUDE.md complet de référence
+## CLAUDE.md complet de référence
 
 ```markdown
 # CLAUDE.md

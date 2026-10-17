@@ -5,8 +5,6 @@ tags: cyber
 created: 2026-01-01T23:23:00.000Z
 ---
 
-# DVWA - Vulnérabilités
-
 ## 1. Brute Force
 
 Le Brut Force est une forme de craquage de mot de passe qui tente de craquer le mot de passe en comparant toutes les combinaisons et permutations possibles de caractères disponibles jusqu'à ce qu'il trouve une correspondance pour le mot de passe. Il est extrêmement lent car il utilise toutes les combinaisons de caractères imaginables. On utilise habituellement des grands dictionnaires de mots pour attaquer.

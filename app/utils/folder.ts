@@ -1,4 +1,8 @@
 import type { ContentNavigationItem } from '@nuxt/content'
+import type { ComputedRef, InjectionKey, Ref } from 'vue'
+
+export const navigationKey: InjectionKey<ComputedRef<ContentNavigationItem[] | undefined>> = Symbol('navigation')
+export const fullNavigationKey: InjectionKey<Ref<ContentNavigationItem[] | undefined>> = Symbol('full-navigation')
 
 export interface FolderCardData {
   title: string
@@ -30,4 +34,30 @@ export function toFolderCards(nodes: ContentNavigationItem[] = []): FolderCardDa
       path: node.path,
       count: countNotes(node)
     }))
+}
+
+export function findFolderNode(nodes: ContentNavigationItem[], path: string): ContentNavigationItem | undefined {
+  for (const node of nodes) {
+    if (node.path === path) return node
+    const child = node.children && findFolderNode(node.children, path)
+    if (child) return child
+  }
+}
+
+export function buildBreadcrumbItems(nodes: ContentNavigationItem[] = [], path: string): { label: string, to?: string }[] {
+  const items: { label: string, to?: string }[] = [{ label: 'Accueil', to: '/' }]
+  const segments = path.split('/').filter(Boolean)
+  let currentNodes = nodes
+  let current = ''
+
+  segments.forEach((segment, index) => {
+    current += `/${segment}`
+    const node = findFolderNode(currentNodes, current)
+    // The current page is the last crumb and is not a link.
+    const isLast = index === segments.length - 1
+    items.push({ label: node?.title ?? segment, to: isLast ? undefined : current })
+    currentNodes = node?.children ?? []
+  })
+
+  return items
 }

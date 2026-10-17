@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+@source "../../../content/**/*";
 
 /*
  * Visual foundation of the "index" identity (P0).

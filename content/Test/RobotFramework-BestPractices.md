@@ -5,8 +5,6 @@ tags: [fiche]
 created: 2026-01-01
 ---
 
-# Bonnes pratiques
-
 Voir [RobotFramework-Architecture](/test/robotframework-architecture) pour l'architecture complete.
 
 ## Naming

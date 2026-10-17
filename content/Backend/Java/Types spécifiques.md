@@ -5,9 +5,9 @@ category: Backend
 tags: [Fiche]
 ---
 
-# Date
+## Date
 
-## Déclarations
+### Déclarations
 
 ```java
 var horloge = Clock.systemUTC();
@@ -28,7 +28,7 @@ var nouvelAnParis = ZonedDateTime.of(nouvelAn, ZoneId.of("Europe/Paris"));
 var nouvelAnGreenwich = OffsetDateTime.of(nouvelAn, ZoneOffset.ofHours(0));
 ```
 
-## Formatage
+### Formatage
 
 ```java
 System.out.println(noel.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)));
@@ -37,16 +37,16 @@ System.out.println(noel.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LON
 System.out.println(noel.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
 ```
 
-## Lecture
+### Lecture
 
 ```java
 var printemps = LocalDate.parse("20/03/2024", DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(Locale.FRANCE));
 System.out.println(printemps.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(Locale.FRANCE)));
 ```
 
-# Texte
+## Texte
 
-## **Déclaration de variable**
+### **Déclaration de variable**
 
 ```java
 var fruits = "Citron, Clémentine, Kiwi, Mandarine, Orange, Noix, Poires, Pommes, Châtaignes, Dattes, Fraises, Framboises, Melons, Mirabelles, Mûres, Myrtilles, Pêches, Prunes, Raisins, Coings, Feijoas, Kakis, Abricots, Amandes, Cerises, Brugnons, Cassis, Groseilles, Pastèques";
@@ -54,7 +54,7 @@ var fruits = "Citron, Clémentine, Kiwi, Mandarine, Orange, Noix, Poires, Pommes
 
 La variable `fruits` est déclarée et initialisée avec une chaîne de caractères contenant une liste de noms de fruits.
 
-## Méthode split()
+### Méthode split()
 
 ```java
 var liste = fruits.split(", ");
@@ -62,7 +62,7 @@ var liste = fruits.split(", ");
 
 La méthode `split()` est utilisée pour diviser la chaîne `fruits` en une liste (`liste`) de noms de fruits en utilisant la virgule et l'espace comme séparateurs.
 
-## Boucle for et conversion en majuscules
+### Boucle for et conversion en majuscules
 
 ```java
 for (var f : liste) {
@@ -72,7 +72,7 @@ for (var f : liste) {
 
 La boucle `for` parcourt la liste `liste` et affiche chaque élément (`f`) après l'avoir converti en majuscules à l'aide de la méthode `toUpperCase()`.
 
-## Construction d'une nouvelle chaîne
+### Construction d'une nouvelle chaîne
 
 ```java
 var tri = new StringBuilder();
@@ -87,7 +87,7 @@ System.out.println(tri.toString());
 
 Un objet `StringBuilder` est utilisé pour construire une nouvelle chaîne (`tri`) à partir de la liste `liste`. La boucle `for` parcourt la liste et ajoute chaque élément à `tri` en utilisant `append()`. La variable `sep` est utilisée pour ajouter un séparateur après chaque élément, sauf le premier.
 
-## Points clés
+### Points clés
 
 - Le code utilise des chaînes de caractères pour stocker des données et les afficher.
 - Des méthodes et des classes spécifiques sont utilisées pour manipuler les chaînes de caractères (split, toUpperCase, StringBuilder).
@@ -100,11 +100,11 @@ En plus de ce code, voici quelques fonctionnalités de traitement de chaînes de
 - Conversion de format: `format()`, `parse()`
 - Concaténation: `+` opérateur, `concat()` méthode
 
-# Regex
+## Regex
 
 > **Voir aussi :** Pour une référence complète des regex, consulter [Regex](/autres/regex) dans le dossier Autres.
 
-## Déclaration de variables
+### Déclaration de variables
 
 ```java
 var texte = "\"Il y a 2 sortes d'amour : l'amour insatisfait, qui vous rend odieux, l'amour satisfait, qui vous rend idiot.\" Colette (1873-1954)";
@@ -112,7 +112,7 @@ var texte = "\"Il y a 2 sortes d'amour : l'amour insatisfait, qui vous rend odie
 
 - La variable `texte` est déclarée et initialisée avec une chaîne de caractères contenant une citation de Colette.
 
-## Validation d'une citation
+### Validation d'une citation
 
 ```java
 // Citation : "[A-Z].*\." \w+ \([-0-9]+\)/* Valider*/
@@ -129,7 +129,7 @@ if(citation.matcher(texte).matches()) {
 - La méthode `matches()` est appelée sur l'objet `Matcher` pour vérifier si la chaîne entière correspond au motif de l'expression régulière.
 - Si la validation est réussie, le message "C'est une citation." est affiché. Sinon, le message "Ce texte ne semble pas être une citation." est affiché.
 
-## Compter le nombre de nombres
+### Compter le nombre de nombres
 
 ```java
 /* Trouver*/
@@ -148,7 +148,7 @@ System.out.printf("%d nombres ont été trouvés.\n", compteur);
 - Le compteur `compteur` est incrémenté à chaque occurrence d'un nombre.
 - Le nombre de nombres trouvés est affiché à la fin.
 
-## Extraire des informations
+### Extraire des informations
 
 ```java
 /* Extraire*/
@@ -170,9 +170,9 @@ while(occurence.find()) {
 - Pour chaque occurrence, les groupes de capture 1 et 2 sont utilisés pour extraire le type d'amour et son effet.
 - Les informations extraites sont affichées pour chaque occurrence.
 
-# Énumérations
+## Énumérations
 
-## Définition
+### Définition
 
 Une énumération en Java est un type de données spécial qui permet de définir un ensemble de valeurs constantes et nommées. C'est un moyen pratique de regrouper des valeurs liées et d'améliorer la lisibilité et la maintenabilité du code.
 
@@ -189,14 +189,14 @@ public enum Saison {
 
 Cet exemple définit une énumération nommée `Saison` avec quatre valeurs possibles : `HIVER`, `PRINTEMPS`, `ETE` et `AUTOMNE`.
 
-## Avantages
+### Avantages
 
 - **Lisibilité:** Les noms des valeurs d'une énumération sont plus explicites que les valeurs numériques brutes.
 - **Sécurité du typage:** Le compilateur Java peut détecter les erreurs de type lors de l'utilisation d'une énumération.
 - **Facilité d'utilisation:** Les énumérations peuvent être utilisées dans des switch-case, des boucles for-each et d'autres structures de contrôle.
 - **Extensibilité:** Les énumérations peuvent avoir des méthodes et des attributs comme les classes.
 
-## Utilisation
+### Utilisation
 
 **Déclaration de variables**
 
@@ -227,9 +227,9 @@ for (Saison saison : Saison.values()) {
 - Vous pouvez définir des constructeurs, des méthodes et des attributs pour une énumération.
 - Java 16 introduit les énumérations locales, limitées à la portée d'une méthode.
 
-## Records
+### Records
 
-## Définition
+### Définition
 
 Un record en Java est un nouveau type de classe introduit dans Java 16. Il permet de déclarer des classes immuables avec une syntaxe concise et facile à utiliser.
 
@@ -248,7 +248,7 @@ Cet exemple définit un record nommé `Point` avec deux champs : `x` et `y`.
 - **Concision:** Le code est plus concis et plus facile à lire.
 - **Performances:** Les records peuvent être compilés de manière plus efficace que les classes traditionnelles.
 
-## Utilisation
+### Utilisation
 
 - **Déclaration de variables**
 
