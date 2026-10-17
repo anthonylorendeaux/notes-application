@@ -2,7 +2,7 @@
 title: Prompt Engineering — Dev & DevOps
 category: Autres
 tags: Fiche
-created: 2026-03-24T20:45:00.000Z
+created: 2026-03-24
 ---
 
 ## Introduction

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { NoteCardData } from '~/utils/note'
 
-defineProps<{ notes: NoteCardData[] }>()
+// Folder pages hide the category badge: it would repeat the folder itself.
+defineProps<{ notes: NoteCardData[], hideCategory?: boolean }>()
 </script>
 
 <template>
@@ -35,7 +36,7 @@ defineProps<{ notes: NoteCardData[] }>()
               {{ note.title }}
             </span>
             <UBadge
-              v-if="note.category"
+              v-if="note.category && !hideCategory"
               color="neutral"
               variant="subtle"
               :label="note.category"

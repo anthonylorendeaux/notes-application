@@ -2,7 +2,7 @@
 title: AI-Powered Testing
 category: Test
 tags: Fiche
-created: 2026-03-24T20:36:00.000Z
+created: 2026-03-24
 ---
 
 L'**AI-Powered Testing** consiste à utiliser des LLMs (Claude, GPT-4, etc.) pour générer, améliorer et automatiser les tests d'une application. L'IA ne remplace pas le jugement du développeur, mais **accélère massivement** la couverture de tests et la détection de cas limites.

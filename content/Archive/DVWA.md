@@ -2,7 +2,6 @@
 title: DVWA
 category: Archive
 tags: cyber
-created: 2026-01-01T23:23:00.000Z
 ---
 
 ## 1. Brute Force

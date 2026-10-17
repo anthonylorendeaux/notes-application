@@ -2,7 +2,6 @@
 title: Robot Framework - Best Practices
 category: Test
 tags: [fiche]
-created: 2026-01-01
 ---
 
 Voir [RobotFramework-Architecture](/test/robotframework-architecture) pour l'architecture complete.

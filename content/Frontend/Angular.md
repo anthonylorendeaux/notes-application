@@ -1,6 +1,5 @@
 ---
 title: Angular
-created: 2026-01-01T23:28:00
 category: Frontend
 tags: [Fiche]
 ---

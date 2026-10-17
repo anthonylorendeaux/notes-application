@@ -2,7 +2,6 @@
 title: Notes S1000D
 category: Archive
 tags: []
-created: 2026-01-01
 ---
 
 Requirements

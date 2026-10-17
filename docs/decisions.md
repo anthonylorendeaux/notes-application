@@ -82,8 +82,16 @@ Priorité : note réelle > index auto-généré > 404. Chaque racine de dossier 
 *À revoir si* les index doivent devenir éditables dans Studio.
 
 **D21 — Schéma de collection explicite, en-têtes de confidentialité (`noindex`, `no-referrer`) et fil d'Ariane sur les notes** (2026-10-17)
-`content.config.ts` déclare `created`, `category` et `tags` via Zod ; le site envoie `X-Robots-Tag: noindex, nofollow` et `Referrer-Policy: no-referrer` tant que la lecture reste publique (D16) ; chaque note affiche son fil d'Ariane, sa catégorie et sa date, avec un lien de retour « Tous les dossiers » dans la navigation latérale.
+`content.config.ts` déclare `created`, `category` et `tags` via Zod ; le site envoie `X-Robots-Tag: noindex, nofollow` et `Referrer-Policy: no-referrer` tant que la lecture reste publique (D16) ; chaque note affiche son fil d'Ariane et sa date (la catégorie, redondante avec le fil d'Ariane, est retirée le 2026-10-17), avec un lien de retour « Tous les dossiers » dans la navigation latérale.
 *À revoir si* le référencement public d'une partie des notes devient souhaité.
+
+**D22 — Épuration des notes d'archive sensibles** (2026-10-17)
+Les rendus de pentest gardent la démarche mais plus les secrets de lab (hash NTLM, mots de passe, SID, chemins personnels) : D16 (lecture publique) reste active.
+*À revoir* dès qu'une note privée doit entrer : M4 passe alors avant.
+
+**D23 — Date de création facultative, au format `AAAA-MM-JJ`** (2026-10-17)
+Les dates d'import (1er janvier 2026) sont retirées : une note sans `created` n'affiche pas de date plutôt qu'une date inventée.
+*À revoir si* une date de dernière modification (git) devient utile.
 
 ## Pistes écartées
 - **Docus** : dépendance à une couche, fonctions IA et endpoints publics à neutraliser.
