@@ -2,7 +2,6 @@
 title: Open Policy Agent (OPA) et Permission Handler
 category: Autres
 tags: Fiche
-created: 2026-01-01T23:28:00.000Z
 ---
 
 ## Fonctionnement général

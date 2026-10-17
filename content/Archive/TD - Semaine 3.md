@@ -2,7 +2,6 @@
 title: TD - Semaine 3
 category: Archive
 tags: cyber
-created: 2026-01-01T23:24:00.000Z
 ---
 
 ## Analyse de la mémoire RAM

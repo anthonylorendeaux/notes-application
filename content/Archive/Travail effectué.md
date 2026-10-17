@@ -2,7 +2,6 @@
 title: Travail effectué
 category: Archive
 tags: []
-created: 2026-01-01
 ---
 
 ## Alternance

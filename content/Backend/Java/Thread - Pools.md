@@ -1,6 +1,5 @@
 ---
 title: Thread - Java - Pools
-created: 2026-01-01T23:28:00
 category: Backend
 tags: [Fiche]
 ---

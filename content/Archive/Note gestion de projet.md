@@ -2,7 +2,6 @@
 title: Note gestion de projet
 category: Archive
 tags: projet
-created: 2026-01-01T23:24:00.000Z
 ---
 
 ## Présentation

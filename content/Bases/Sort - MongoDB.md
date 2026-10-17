@@ -1,6 +1,5 @@
 ---
 title: Sort - MongoDB
-created: 2026-01-01T23:28:00
 category: Bases
 tags: [Fiche]
 ---

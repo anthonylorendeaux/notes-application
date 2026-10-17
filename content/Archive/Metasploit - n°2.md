@@ -2,7 +2,6 @@
 title: Metasploit - n°2
 category: Archive
 tags: cyber
-created: 2026-01-01T23:23:00.000Z
 ---
 
 ## Scan

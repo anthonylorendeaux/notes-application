@@ -2,7 +2,6 @@
 title: Robot Framework - Architecture
 category: Test
 tags: [fiche]
-created: 2026-01-01
 ---
 
 ## Principe

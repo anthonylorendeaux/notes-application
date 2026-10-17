@@ -85,6 +85,14 @@ Priorité : note réelle > index auto-généré > 404. Chaque racine de dossier 
 `content.config.ts` déclare `created`, `category` et `tags` via Zod ; le site envoie `X-Robots-Tag: noindex, nofollow` et `Referrer-Policy: no-referrer` tant que la lecture reste publique (D16) ; chaque note affiche son fil d'Ariane, sa catégorie et sa date, avec un lien de retour « Tous les dossiers » dans la navigation latérale.
 *À revoir si* le référencement public d'une partie des notes devient souhaité.
 
+**D22 — Épuration des notes d'archive sensibles** (2026-10-17)
+Les rendus de pentest gardent la démarche mais plus les secrets de lab (hash NTLM, mots de passe, SID, chemins personnels) : D16 (lecture publique) reste active.
+*À revoir* dès qu'une note privée doit entrer : M4 passe alors avant.
+
+**D23 — Date de création facultative, au format `AAAA-MM-JJ`** (2026-10-17)
+Les dates d'import (1er janvier 2026) sont retirées : une note sans `created` n'affiche pas de date plutôt qu'une date inventée.
+*À revoir si* une date de dernière modification (git) devient utile.
+
 ## Pistes écartées
 - **Docus** : dépendance à une couche, fonctions IA et endpoints publics à neutraliser.
 - **Template Docs de Nuxt UI** (écarté le 2026-10-12) : embarque `nuxt-llms` (llms.txt et llms-full.txt pré-rendus avec tout le contenu), un serveur MCP sur `/mcp` et une mise en page de documentation, à retirer ou à protéger.

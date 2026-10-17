@@ -2,7 +2,6 @@
 title: Notes management - Mandela
 category: Archive
 tags: []
-created: 2026-01-01
 ---
 
 ## Pépites

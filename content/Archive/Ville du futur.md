@@ -2,7 +2,6 @@
 title: Ville du futur
 category: Archive
 tags: []
-created: 2026-01-01
 ---
 
 ## **Comment utiliser les jumeaux numériques pour améliorer la résilience des villes face aux catastrophes naturelles ?**

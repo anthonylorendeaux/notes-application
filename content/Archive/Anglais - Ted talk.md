@@ -1,6 +1,5 @@
 ---
 title: Anglais - Ted talk
-created: 2026-01-01T23:23:00
 category: Archive
 ---
 
